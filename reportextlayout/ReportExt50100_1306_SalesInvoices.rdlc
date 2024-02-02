@@ -89,7 +89,7 @@ Cstr(Fields!Date.Value) + Chr(177) +
 Cstr(Fields!Delivery_Order_No.Value) + Chr(177) +
 Cstr(Fields!Payment_Terms_Code.Value) + Chr(177) +
 Cstr(Fields!Purchase_Order_No_.Value) + Chr(177) +
-Cstr(Fields!OrderNo.Value) + Chr(177) +
+Cstr(Fields!Order_Date.Value) + Chr(177) +
 Cstr(Fields!Salesperson_Code.Value),1)</Hidden>
                                             </Visibility>
                                             <Style>
