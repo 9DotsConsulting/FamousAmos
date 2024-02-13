@@ -11,13 +11,16 @@ pageextension 50002 PostedSalesInvoicePage extends "Posted Sales Invoice"
                 MultiLine = true;
                 //Editable = true;
             }
-
-            field("Remarks Info"; rec.Remarks)
+        }
+        modify("Work Description")
+        {
+            Visible = false;
+        }
+        addafter("Ship-to Contact")
+        {
+            field("Phone No."; rec."Ship-to Phone No.")
             {
                 ApplicationArea = All;
-                Visible = true;
-                MultiLine = true;
-                //Editable = true;
             }
         }
     }
