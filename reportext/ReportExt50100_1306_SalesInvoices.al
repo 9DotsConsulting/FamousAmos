@@ -345,7 +345,8 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
         end;
         if (SIL.FindSet()) and (Cond = 2) then begin
             repeat
-                TLineUP += SIL."Unit Price";
+                //TLineUP += SIL."Unit Price";
+                TLineUP := SIL."Unit Price";
             until (SIL.Next = 0);
             exit(TLineUP);
         end;
