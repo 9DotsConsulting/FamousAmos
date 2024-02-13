@@ -11,14 +11,10 @@ pageextension 50003 PostedSalesCreditMemoPage extends "Posted Sales Credit Memo"
                 MultiLine = true;
                 //Editable = true;
             }
-
-            field("Remarks Info"; rec.Remarks)
-            {
-                ApplicationArea = All;
-                Visible = true;
-                MultiLine = true;
-                //Editable = true;
-            }
+        }
+        modify("Work Description")
+        {
+            Visible = false;
         }
     }
 }
