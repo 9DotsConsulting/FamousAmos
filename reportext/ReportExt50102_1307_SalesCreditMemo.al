@@ -93,8 +93,6 @@ reportextension 50102 SalesCreditMemo extends "Standard Sales - Credit Memo"
 
             //Field 26: Custom field
             column(Deliver_On; "Deliver On") { }
-            column(Remarks_Info; Remarks) { }
-
         }
         add(Line)
         {
