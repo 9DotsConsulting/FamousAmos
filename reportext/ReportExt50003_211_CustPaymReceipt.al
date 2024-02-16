@@ -1,12 +1,12 @@
-reportextension 50001 "DOT Vendor - Payment Receipt" extends "Vendor - Payment Receipt"
+reportextension 50003 "DOT - Cust. Payment Receipt" extends "Customer - Payment Receipt"
 {
     dataset
     {
-        add("Vendor Ledger Entry")
+        add("Cust. Ledger Entry")
         {
             column(CompanyLogo; CI.Picture) { }
             column(ApprovedBy; GetApprovedBy("Document No.", 1)) { }
-            column(Vendor_Name; lrVendor.Name) { }
+            column(Customer_Name; lrCustomer.Name) { }
             column(Payment_Reference; "Payment Reference") { }
 
             column(CompanyName; CI.Name) { }
@@ -18,15 +18,16 @@ reportextension 50001 "DOT Vendor - Payment Receipt" extends "Vendor - Payment R
             column(CoRegNo; CI."Registration No.") { }
             column(BalAccountNo; BalAccountNo) { }
         }
-        modify("Vendor Ledger Entry")
+        modify("Cust. Ledger Entry")
         {
             trigger OnAfterAfterGetRecord()
             var
                 bankAccPostingGrp: record "Bank Account Posting Group";
             begin
-                lrVendor.Get("Vendor Ledger Entry"."Vendor No.");
-                bankAccPostingGrp.Get("Vendor Ledger Entry"."Bal. Account No.");
-                BalAccountNo := bankAccPostingGrp."G/L Account No.";
+                lrCustomer.Get("Cust. Ledger Entry"."Customer No.");
+                bankAccPostingGrp.SetRange(Code, "Cust. Ledger Entry"."Bal. Account No.");
+                if bankAccPostingGrp.findfirst then
+                    BalAccountNo := bankAccPostingGrp."G/L Account No.";
             end;
         }
         add(Total)
@@ -41,7 +42,7 @@ reportextension 50001 "DOT Vendor - Payment Receipt" extends "Vendor - Payment R
                 AmtToWord: report "DOT AmountToWords";
                 NoDec, Dec : decimal;
             begin
-                AmountTotal += "Vendor Ledger Entry"."Original Amount";
+                AmountTotal += "Cust. Ledger Entry"."Original Amount";
                 //amount to word
                 AmtToWord.InitTextVariable();
                 AmtToWord.FormatNoText_Integer(NoText1, AmountTotal, '');//NegOriginalAmt_VendLedgEntry
@@ -62,10 +63,10 @@ reportextension 50001 "DOT Vendor - Payment Receipt" extends "Vendor - Payment R
 
     rendering
     {
-        layout("DOT - Vendor Payment Receipt")
+        layout("DOT - Cust. Payment Receipt")
         {
             Type = RDLC;
-            LayoutFile = './reportextlayout/ReportExt50001_411_PaymentReceipt.rdlc';
+            LayoutFile = './reportextlayout/ReportExt50003_211_CustPaymReceipt.rdlc';
         }
     }
     local procedure GetApprovedBy(DocNo: Code[20]; No: Integer): Text
@@ -89,11 +90,10 @@ reportextension 50001 "DOT Vendor - Payment Receipt" extends "Vendor - Payment R
 
     var
         CI: Record "Company Information";
-        lrVendor: Record Vendor;
+        lrCustomer: Record Customer;
         GLSetup2: Record "General Ledger Setup";
         TotalAmt, ShowAmount_LCY, AmountTotal : Decimal;
         NoText1, NoText2 : array[2] of Text[80];
         AmountInWord: Text;
-        BankAccount: Record "Bank Account";
         BalAccountNo: code[20];
 }

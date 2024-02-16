@@ -36,16 +36,13 @@
                                     <Width>129.66967pt</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>134.96786pt</Width>
+                                    <Width>198.56887pt</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>63.60101pt</Width>
+                                    <Width>82.37537pt</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>70.86614pt</Width>
-                                  </TablixColumn>
-                                  <TablixColumn>
-                                    <Width>41.28389pt</Width>
+                                    <Width>29.77466pt</Width>
                                   </TablixColumn>
                                   <TablixColumn>
                                     <Width>70.86614pt</Width>
@@ -92,38 +89,6 @@
                                       <TablixCell />
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="textbox326">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value />
-                                                    <Style>
-                                                      <FontFamily>Segoe UI Semibold</FontFamily>
-                                                      <FontSize>7pt</FontSize>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style>
-                                                  <TextAlign>Right</TextAlign>
-                                                </Style>
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <ZIndex>63</ZIndex>
-                                            <Style>
-                                              <VerticalAlign>Bottom</VerticalAlign>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
                                           <Textbox Name="Textbox70">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
@@ -131,15 +96,16 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>Cheque No.</Value>
                                                     <Style>
-                                                      <FontFamily>Segoe UI Semibold</FontFamily>
-                                                      <FontSize>7pt</FontSize>
+                                                      <FontFamily>segoe ui</FontFamily>
+                                                      <FontSize>8pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style>
-                                                  <TextAlign>Right</TextAlign>
+                                                  <TextAlign>Center</TextAlign>
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
@@ -170,7 +136,9 @@
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <ZIndex>62</ZIndex>
@@ -290,39 +258,6 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox10">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value />
-                                                    <Style>
-                                                      <FontFamily>Segoe UI</FontFamily>
-                                                      <FontSize>7pt</FontSize>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>Textbox10</rd:DefaultName>
-                                            <Style>
-                                              <Border>
-                                                <Style>None</Style>
-                                              </Border>
-                                              <BottomBorder>
-                                                <Style>Solid</Style>
-                                              </BottomBorder>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
                                           <Textbox Name="Textbox71">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
@@ -337,7 +272,9 @@
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox71</rd:DefaultName>
@@ -370,7 +307,9 @@
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox11</rd:DefaultName>
@@ -488,38 +427,6 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="GenJournalLineAmount">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value />
-                                                    <Style>
-                                                      <FontFamily>Segoe UI</FontFamily>
-                                                      <FontSize>7pt</FontSize>
-                                                      <Format>=Fields!Amount_GenJnlLineFormat.Value</Format>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <ZIndex>35</ZIndex>
-                                            <Style>
-                                              <BackgroundColor>=iif(Code.GetRowColor() = TRUE, "#EBEBEB", "White")</BackgroundColor>
-                                              <VerticalAlign>Middle</VerticalAlign>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
                                           <Textbox Name="Textbox73">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
@@ -527,14 +434,17 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=Fields!Payment_Reference.Value</Value>
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
-                                                      <FontSize>7pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
+                                                      <FontWeight>Normal</FontWeight>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox73</rd:DefaultName>
@@ -557,14 +467,16 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=Fields!CurrencyCode_GenJnlLine.Value</Value>
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
-                                                      <FontSize>7pt</FontSize>
+                                                      <FontSize>8pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <ZIndex>34</ZIndex>
@@ -572,7 +484,6 @@
                                               <BackgroundColor>=iif(Code.GetRowColor() = TRUE, "#EBEBEB", "White")</BackgroundColor>
                                               <VerticalAlign>Middle</VerticalAlign>
                                               <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
@@ -650,10 +561,9 @@
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
                                           </Textbox>
-                                          <ColSpan>5</ColSpan>
+                                          <ColSpan>4</ColSpan>
                                         </CellContents>
                                       </TablixCell>
-                                      <TablixCell />
                                       <TablixCell />
                                       <TablixCell />
                                       <TablixCell />
@@ -721,10 +631,9 @@
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
                                           </Textbox>
-                                          <ColSpan>5</ColSpan>
+                                          <ColSpan>4</ColSpan>
                                         </CellContents>
                                       </TablixCell>
-                                      <TablixCell />
                                       <TablixCell />
                                       <TablixCell />
                                       <TablixCell />
@@ -824,38 +733,6 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="textbox157">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value>Cheque No.:</Value>
-                                                    <Style>
-                                                      <FontFamily>Segoe UI</FontFamily>
-                                                      <FontSize>8pt</FontSize>
-                                                      <FontWeight>Normal</FontWeight>
-                                                      <Format>=Fields!AmountLCY_GenJnlLineFormat.Value</Format>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>textbox157</rd:DefaultName>
-                                            <ZIndex>19</ZIndex>
-                                            <Style>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
                                           <Textbox Name="Textbox74">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
@@ -863,7 +740,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!Payment_Reference.Value</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -871,7 +748,9 @@
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox74</rd:DefaultName>
@@ -899,14 +778,15 @@
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>textbox158</rd:DefaultName>
                                             <ZIndex>18</ZIndex>
                                             <Style>
                                               <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
@@ -1000,10 +880,8 @@
                                             <rd:DefaultName>Textbox99</rd:DefaultName>
                                             <Style />
                                           </Textbox>
-                                          <ColSpan>2</ColSpan>
                                         </CellContents>
                                       </TablixCell>
-                                      <TablixCell />
                                       <TablixCell>
                                         <CellContents>
                                           <Textbox Name="Textbox79">
@@ -1021,7 +899,9 @@
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox79</rd:DefaultName>
@@ -1045,7 +925,9 @@
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox80</rd:DefaultName>
@@ -1107,9 +989,6 @@
                                               <Border>
                                                 <Style>None</Style>
                                               </Border>
-                                              <BottomBorder>
-                                                <Style>Solid</Style>
-                                              </BottomBorder>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
@@ -1140,42 +1019,6 @@
                                               <Border>
                                                 <Style>None</Style>
                                               </Border>
-                                              <BottomBorder>
-                                                <Style>Solid</Style>
-                                              </BottomBorder>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
-                                          <Textbox Name="Textbox43">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value />
-                                                    <Style>
-                                                      <FontFamily>Segoe UI</FontFamily>
-                                                      <FontSize>7pt</FontSize>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>Textbox43</rd:DefaultName>
-                                            <Style>
-                                              <Border>
-                                                <Style>None</Style>
-                                              </Border>
-                                              <BottomBorder>
-                                                <Style>Solid</Style>
-                                              </BottomBorder>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
@@ -1198,7 +1041,9 @@
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox75</rd:DefaultName>
@@ -1206,9 +1051,6 @@
                                               <Border>
                                                 <Style>None</Style>
                                               </Border>
-                                              <BottomBorder>
-                                                <Style>Solid</Style>
-                                              </BottomBorder>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
@@ -1231,7 +1073,9 @@
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox44</rd:DefaultName>
@@ -1239,9 +1083,6 @@
                                               <Border>
                                                 <Style>None</Style>
                                               </Border>
-                                              <BottomBorder>
-                                                <Style>Solid</Style>
-                                              </BottomBorder>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
@@ -1272,9 +1113,6 @@
                                               <Border>
                                                 <Style>None</Style>
                                               </Border>
-                                              <BottomBorder>
-                                                <Style>Solid</Style>
-                                              </BottomBorder>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
@@ -1307,6 +1145,9 @@
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox50</rd:DefaultName>
                                             <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
@@ -1334,33 +1175,9 @@
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox101</rd:DefaultName>
                                             <Style>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
-                                          <Textbox Name="Textbox54">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value />
-                                                    <Style>
-                                                      <FontFamily>Segoe UI</FontFamily>
-                                                      <FontSize>7pt</FontSize>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>Textbox54</rd:DefaultName>
-                                            <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
@@ -1383,11 +1200,16 @@
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Center</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox76</rd:DefaultName>
                                             <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
@@ -1410,11 +1232,16 @@
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
-                                                <Style />
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox55</rd:DefaultName>
                                             <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
@@ -1442,6 +1269,9 @@
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox69</rd:DefaultName>
                                             <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                             </Style>
@@ -1454,7 +1284,6 @@
                               </TablixBody>
                               <TablixColumnHierarchy>
                                 <TablixMembers>
-                                  <TablixMember />
                                   <TablixMember />
                                   <TablixMember />
                                   <TablixMember />
@@ -1597,6 +1426,7 @@ Fields!PostingDate_GenJnlLine.Value + Chr(177) +
 Fields!Vendor_Name.Value + Chr(177) + 
 Fields!DocNo_GenJnlLine.Value + Chr(177) +
 Fields!BankAccName.Value + Chr(177) +
+Fields!BalAccountNo.Value + Chr(177) +
 "",1)</Hidden>
                               </Visibility>
                               <Style>
@@ -1670,7 +1500,7 @@ Fields!BankAccName.Value + Chr(177) +
         <Height>3.89119cm</Height>
         <Style />
       </Body>
-      <Width>513.03288pt</Width>
+      <Width>513.55644pt</Width>
       <Page>
         <PageHeader>
           <Height>4.46373cm</Height>
@@ -1710,7 +1540,7 @@ Fields!BankAccName.Value + Chr(177) +
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>2.53157cm</Top>
+              <Top>2.12639cm</Top>
               <Left>10.94977cm</Left>
               <Height>11pt</Height>
               <Width>2.73125cm</Width>
@@ -1738,7 +1568,7 @@ Fields!BankAccName.Value + Chr(177) +
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>3.31892cm</Top>
+              <Top>2.91374cm</Top>
               <Left>10.94977cm</Left>
               <Height>11pt</Height>
               <Width>2.73125cm</Width>
@@ -1766,7 +1596,7 @@ Fields!BankAccName.Value + Chr(177) +
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>2.53863cm</Top>
+              <Top>2.13345cm</Top>
               <Left>13.68102cm</Left>
               <Height>11pt</Height>
               <Width>4.41764cm</Width>
@@ -1794,7 +1624,7 @@ Fields!BankAccName.Value + Chr(177) +
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>3.31892cm</Top>
+              <Top>2.91374cm</Top>
               <Left>13.68102cm</Left>
               <Height>11pt</Height>
               <Width>4.41764cm</Width>
@@ -1823,7 +1653,7 @@ Fields!BankAccName.Value + Chr(177) +
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>2.92668cm</Top>
+              <Top>2.5215cm</Top>
               <Left>13.68102cm</Left>
               <Height>11pt</Height>
               <Width>4.41764cm</Width>
@@ -1881,7 +1711,7 @@ Fields!BankAccName.Value + Chr(177) +
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>2.91963cm</Top>
+              <Top>2.51445cm</Top>
               <Left>10.94977cm</Left>
               <Height>11pt</Height>
               <Width>2.73125cm</Width>
@@ -1947,6 +1777,62 @@ Fields!BankAccName.Value + Chr(177) +
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </Textbox>
+            <Textbox Name="CompanyInfoBankAccountNoCaption2">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>A/C No.</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Top>3.34412cm</Top>
+              <Left>10.94977cm</Left>
+              <Height>11pt</Height>
+              <Width>2.71278cm</Width>
+              <ZIndex>10</ZIndex>
+              <Style>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="CompanyInfoBankAccountNo2">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=": " + Code.GetData(5,1)</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Top>3.33707cm</Top>
+              <Left>13.68102cm</Left>
+              <Height>11pt</Height>
+              <Width>4.41764cm</Width>
+              <ZIndex>11</ZIndex>
+              <Style>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style />
         </PageHeader>
@@ -1955,111 +1841,6 @@ Fields!BankAccName.Value + Chr(177) +
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Rectangle Name="Rectangle2">
-              <ReportItems>
-                <Textbox Name="Textbox39">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>Payment approved by :</Value>
-                          <Style>
-                            <FontFamily>segoe ui</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Left</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox39</rd:DefaultName>
-                  <Top>1.9cm</Top>
-                  <Height>0.6cm</Height>
-                  <Width>5cm</Width>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <TopBorder>
-                      <Color>Black</Color>
-                      <Style>Solid</Style>
-                      <Width>1pt</Width>
-                    </TopBorder>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-              </ReportItems>
-              <KeepTogether>true</KeepTogether>
-              <Top>0.00412cm</Top>
-              <Left>0.57879cm</Left>
-              <Height>2.5cm</Height>
-              <Width>5cm</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Rectangle>
-            <Rectangle Name="Rectangle3">
-              <ReportItems>
-                <Textbox Name="Textbox40">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>Received by :</Value>
-                          <Style>
-                            <FontFamily>segoe ui</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Left</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox39</rd:DefaultName>
-                  <Top>1.9cm</Top>
-                  <Height>0.6cm</Height>
-                  <Width>5cm</Width>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <TopBorder>
-                      <Color>Black</Color>
-                      <Style>Solid</Style>
-                      <Width>1pt</Width>
-                    </TopBorder>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-              </ReportItems>
-              <KeepTogether>true</KeepTogether>
-              <Top>0.03588cm</Top>
-              <Left>12.53834cm</Left>
-              <Height>2.5cm</Height>
-              <Width>5cm</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Rectangle>
             <Rectangle Name="Rectangle1">
               <ReportItems>
                 <Textbox Name="Textbox14">
@@ -2204,18 +1985,7 @@ Fields!BankAccName.Value + Chr(177) +
                     </Border>
                   </Style>
                 </Textbox>
-                <Line Name="Line1">
-                  <Left>10.94977cm</Left>
-                  <Height>1.73575cm</Height>
-                  <Width>0cm</Width>
-                  <ZIndex>4</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>Solid</Style>
-                    </Border>
-                  </Style>
-                </Line>
-                <Textbox Name="Textbox15">
+                <Textbox Name="Textbox25">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -2233,17 +2003,18 @@ Fields!BankAccName.Value + Chr(177) +
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox14</rd:DefaultName>
-                  <Left>11.64226cm</Left>
+                  <Top>0.0043cm</Top>
+                  <Left>11.57713cm</Left>
                   <Height>0.48761cm</Height>
                   <Width>6.3021cm</Width>
-                  <ZIndex>5</ZIndex>
+                  <ZIndex>4</ZIndex>
                   <Style>
                     <Border>
                       <Style>None</Style>
                     </Border>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox16">
+                <Textbox Name="Textbox26">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -2261,18 +2032,18 @@ Fields!BankAccName.Value + Chr(177) +
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox14</rd:DefaultName>
-                  <Top>0.48761cm</Top>
-                  <Left>11.64226cm</Left>
-                  <Height>0.48761cm</Height>
+                  <Top>0.49191cm</Top>
+                  <Left>11.57713cm</Left>
+                  <Height>0.44803cm</Height>
                   <Width>6.3021cm</Width>
-                  <ZIndex>6</ZIndex>
+                  <ZIndex>5</ZIndex>
                   <Style>
                     <Border>
                       <Style>None</Style>
                     </Border>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox17">
+                <Textbox Name="Textbox27">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -2290,22 +2061,142 @@ Fields!BankAccName.Value + Chr(177) +
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox14</rd:DefaultName>
-                  <Top>1.0062cm</Top>
-                  <Left>11.64226cm</Left>
+                  <Top>0.97522cm</Top>
+                  <Left>11.57713cm</Left>
                   <Height>0.48761cm</Height>
                   <Width>6.3021cm</Width>
-                  <ZIndex>7</ZIndex>
+                  <ZIndex>6</ZIndex>
                   <Style>
                     <Border>
                       <Style>None</Style>
                     </Border>
                   </Style>
                 </Textbox>
+                <Image Name="Image2">
+                  <Source>Embedded</Source>
+                  <Value>amos_icon</Value>
+                  <Sizing>FitProportional</Sizing>
+                  <Top>0.0043cm</Top>
+                  <Left>10.94977cm</Left>
+                  <Height>1.73575cm</Height>
+                  <Width>0.59208cm</Width>
+                  <ZIndex>7</ZIndex>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                  </Style>
+                </Image>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
               <Top>3.36639cm</Top>
               <Height>2.5cm</Height>
               <Width>18.09866cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Rectangle>
+            <Rectangle Name="Rectangle2">
+              <ReportItems>
+                <Textbox Name="Textbox39">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>Payment approved by :</Value>
+                          <Style>
+                            <FontFamily>segoe ui</FontFamily>
+                            <FontSize>8pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox39</rd:DefaultName>
+                  <Top>1.9cm</Top>
+                  <Height>0.6cm</Height>
+                  <Width>5cm</Width>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <TopBorder>
+                      <Color>Black</Color>
+                      <Style>Solid</Style>
+                      <Width>1pt</Width>
+                    </TopBorder>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                </Textbox>
+              </ReportItems>
+              <KeepTogether>true</KeepTogether>
+              <Top>0.00412cm</Top>
+              <Left>0.57879cm</Left>
+              <Height>2.5cm</Height>
+              <Width>5cm</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Rectangle>
+            <Rectangle Name="Rectangle3">
+              <ReportItems>
+                <Textbox Name="Textbox40">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>Received by :</Value>
+                          <Style>
+                            <FontFamily>segoe ui</FontFamily>
+                            <FontSize>8pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox39</rd:DefaultName>
+                  <Top>1.9cm</Top>
+                  <Height>0.6cm</Height>
+                  <Width>5cm</Width>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <TopBorder>
+                      <Color>Black</Color>
+                      <Style>Solid</Style>
+                      <Width>1pt</Width>
+                    </TopBorder>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                </Textbox>
+              </ReportItems>
+              <KeepTogether>true</KeepTogether>
+              <Top>0.03588cm</Top>
+              <Left>12.53834cm</Left>
+              <Height>2.5cm</Height>
+              <Width>5cm</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -2313,6 +2204,18 @@ Fields!BankAccName.Value + Chr(177) +
                 </Border>
               </Style>
             </Rectangle>
+            <Line Name="Line1">
+              <Top>3.36639cm</Top>
+              <Left>10.80866cm</Left>
+              <Height>1.73575cm</Height>
+              <Width>0cm</Width>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>Solid</Style>
+                </Border>
+              </Style>
+            </Line>
           </ReportItems>
           <Style>
             <Border>
@@ -2420,6 +2323,17 @@ Public Function SetData(NewData as Object,Group as integer)
   Return True
 End Function
 </Code>
+  <EmbeddedImages>
+    <EmbeddedImage Name="amos_icon">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>/9j/4AAQSkZJRgABAQEAcQBxAAD/4QLgRXhpZgAATU0AKgAAAAgABAE7AAIAAAAHAAABSodpAAQAAAABAAABUpydAAEAAAAOAAACyuocAAcAAAEMAAAAPgAAAAAc6gAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYWRtaW4nAAAABZADAAIAAAAUAAACoJAEAAIAAAAUAAACtJKRAAIAAAADMzAAAJKSAAIAAAADMzAAAOocAAcAAAEMAAABlAAAAAAc6gAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAyNDowMjowNyAwOTo0NjowNgAyMDI0OjAyOjA3IDA5OjQ2OjA2AAAAYQBkAG0A
+aQBuACcAAAD/4QQZaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49J++7vycgaWQ9J1c1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCc/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyI+PHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj48cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0idXVpZDpmYWY1YmRkNS1iYTNkLTExZGEtYWQzMS1kMzNkNzUxODJmMWIiIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIvPjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSJ1dWlkOmZhZjViZGQ1LWJhM2QtMTFkYS1hZDMxLWQzM2Q3NTE4MmYxYiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIj48eG1wOkNyZWF0ZURhdGU+MjAyNC0wMi0wN1QwOTo0NjowNi4yOTU8L3htcDpDcmVhdGVEYXRlPjwvcmRmOkRlc2NyaXB0aW9uPjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSJ1dWlkOmZhZjViZGQ1LWJhM2QtMTFkYS1hZDMxLWQzM2Q3NTE4MmYxYiIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIj48ZGM6Y3JlYXRvcj48cmRmOlNlcSB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPjxyZGY6bGk+YWRtaW4nPC9yZGY6bGk+PC9yZGY6U2VxPg0KCQkJPC9kYzpjcmVhdG9yPjwvcmRmOkRl
+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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
   <Language>=User!Language</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
@@ -2735,6 +2649,9 @@ End Function
         </Field>
         <Field Name="BankAccName">
           <DataField>BankAccName</DataField>
+        </Field>
+        <Field Name="BalAccountNo">
+          <DataField>BalAccountNo</DataField>
         </Field>
       </Fields>
       <Query>

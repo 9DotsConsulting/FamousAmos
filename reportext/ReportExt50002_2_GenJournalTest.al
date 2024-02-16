@@ -19,6 +19,7 @@ reportextension 50002 "DOT - Gen. Journal Test" extends "General Journal - Test"
             column(AmountTotal; AmountTotal) { }
             column(AmountInWord; AmountInWord) { }
             column(BankAccName; BankAccName) { }
+            column(BalAccountNo; BalAccountNo) { }
         }
         modify("Gen. Journal Line")
         {
@@ -26,12 +27,25 @@ reportextension 50002 "DOT - Gen. Journal Test" extends "General Journal - Test"
             var
                 AmtToWord: report "DOT AmountToWords";
                 NoDec, Dec : decimal;
+                bankAccPostingGrp: record "Bank Account Posting Group";
             begin
-                lrVendor.Get("Gen. Journal Line"."Account No.");
-                Vendor_Name := lrVendor.Name;
+                if "Gen. Journal Line"."Account Type" = "Account Type"::Vendor then begin
+                    lrVendor.SetRange("No.", "Gen. Journal Line"."Account No.");
+                    if lrVendor.findfirst then
+                        Vendor_Name := lrVendor.Name;
+                end else
+                    if "Gen. Journal Line"."Account Type" = "Account Type"::Customer then begin
+                        lrCustomer.SetRange("No.", "Gen. Journal Line"."Account No.");
+                        if lrCustomer.findfirst then
+                            Vendor_Name := lrCustomer.Name;
+                    end;
+
 
                 BankAccount.Get("Gen. Journal Line"."Bal. Account No.");
                 BankAccName := BankAccount.Name;
+
+                bankAccPostingGrp.Get("Gen. Journal Line"."Bal. Account No.");
+                BalAccountNo := bankAccPostingGrp."G/L Account No.";
 
                 //amount to word
                 AmountTotal += "Gen. Journal Line".Amount;
@@ -84,10 +98,12 @@ reportextension 50002 "DOT - Gen. Journal Test" extends "General Journal - Test"
     var
         CI: Record "Company Information";
         lrVendor: Record Vendor;
+        lrCustomer: Record Customer;
         GLSetup2: Record "General Ledger Setup";
         BankAccount: Record "Bank Account";
         TotalAmt, ShowAmount_LCY, AmountTotal : Decimal;
         NoText1, NoText2 : array[2] of Text[80];
         AmountInWord: Text;
         Vendor_Name, BankAccName : text[100];
+        BalAccountNo: code[20];
 }
