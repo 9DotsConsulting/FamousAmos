@@ -113,6 +113,14 @@ codeunit 50001 BankExportGIROFAST
         txtYear := FORMAT(DATE2DMY(TODAY, 3));
         txtTimeNow := FORMAT(Time, 0, '<Hours24,2><Filler Character,0><Minutes,2><Seconds,2>');
         //Remove unwanted characters (not needed)
+
+        //file naming
+
+        filename1 := 'CIMB' + txtDay + txtMonth;
+        filename1 := DelChr(filename1, '', ' ');
+        filename1 := DelChr(filename1, '=', '/');
+        filename1 := DelChr(filename1, '=', ':');
+
         #endregion
         CR := 13;
         LF := 10;
@@ -290,6 +298,19 @@ codeunit 50001 BankExportGIROFAST
                 totalamount += Abs(TempGenJnLine.Amount);
             until TempGenJnLine.Next() = 0;
 
+        filename := filename1 + '.txt';
+
+        //Export out
+        TempBlob.CreateInStream(Instr); //to create instream
+        lrGJL.Reset;
+        lrGJL.SetRange("Journal Template Name", rec."Journal Template Name");
+        lrGJL.SetRange("Journal Batch Name", rec."Journal Batch Name");
+        if lrGJL.FindFirst then
+            repeat
+                lrGJL.Modify(false);
+            until lrGJL.Next() = 0;
+        DownloadFromStream(Instr, '', '', '', FileName); //to download the file 
+        MESSAGE('%1 - CIMB payment file has been exported!', FileName);
     end;
 
     //Get the total lines for payment journal
