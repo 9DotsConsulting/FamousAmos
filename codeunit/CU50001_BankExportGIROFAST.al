@@ -169,6 +169,7 @@ codeunit 50001 BankExportGIROFAST
 
         if TempGenJnLine.FindFirst() then begin
             FirstLineServiceCode := TempGenJnLine."Service Code";
+            FirstLineSettlementMode := TempGenJnLine."Settlement Mode";
 
             //Get balance bank account value
             grec_GenJournalLine.Reset;
@@ -186,6 +187,37 @@ codeunit 50001 BankExportGIROFAST
             end;
         end;
 
+
+        TempGenJnLine.SetRange("Journal Template Name", rec."Journal Template Name");
+        TempGenJnLine.SetRange("Journal Batch Name", rec."Journal Batch Name");
+        //TempGenJnLine.SetRange("Document No.", rec."Document No.");
+        //TempGenJnLine.SetRange("Account Type", rec."Account Type"::Vendor);
+
+        if TempGenJnLine.FindFirst then
+            repeat
+                //looping for lines
+                //get vendor bank info
+                grec_GenJournalLine.Reset;
+                grec_GenJournalLine.SetRange("Journal Batch Name", TempGenJnLine."Journal Batch Name");
+                grec_GenJournalLine.SetRange("Journal Template Name", TempGenJnLine."Journal Template Name");
+                grec_GenJournalLine.SetRange("Document No.", TempGenJnLine."Document No.");
+                grec_GenJournalLine.SetRange("Account Type", TempGenJnLine."Account Type"::Vendor);
+                if grec_GenJournalLine.FindFirst then begin
+                    grec_Vendor.Get(grec_GenJournalLine."Account No.");
+                    VendBankAcc.Reset;
+                    VendBankAcc.SetRange("Vendor No.", grec_Vendor."No.");
+                    if not VendBankAcc.Find('-') then
+                        Error('Vendor bank account of vendor %1 is not setup', grec_Vendor."No.");
+                end;
+
+                if grec_GenJournalLine.FindFirst then
+                    repeat
+                        rowCount += 1;
+                    until grec_GenJournalLine.Next() = 0;
+
+                totalamount += Abs(TempGenJnLine.Amount);
+            until TempGenJnLine.Next() = 0;
+
         //---------------File Header starts----------------//
 
         //#1 First line service code (1)
@@ -193,21 +225,29 @@ codeunit 50001 BankExportGIROFAST
         g_txtFile := FirstLineServiceCode + '%';
 
         //#2 Bal. Account No (Comp bank account) (10)
-        g_txtFile := g_txtFile + bankAccount."No." + '%';
+        //g_txtFile := g_txtFile + bankAccount."No." + '%';
+        g_txtFile := g_txtFile + bankAccount."Bank Account No." + '%';
 
         //#3 Company name
         g_txtFile := g_txtFile + CompInfo.Name + '%';
 
         //#4 Currency code (if blank use lcy)
+        if (grec_GenJournalLine."Currency Code" = '') then
+            g_txtFile := g_txtFile + 'SGD'
+        else
+            g_txtFile := g_txtFile + 'SGD';
         g_txtFile := g_txtFile + grec_GenJournalLine."Currency Code";
 
         //#5 Total Batch Amount (2 decimals place)
         //Make a function that sum up all the payment lines
-        g_txtFile := g_txtFile + convertDecimal(getTotalAmount()) + '%';
+        //g_txtFile := g_txtFile + convertDecimal(getTotalAmount(rec)) + '%';
+        g_txtFile := g_txtFile + convertDecimal(totalamount) + '%';
+        //g_txtFile := g_txtFile + format(totalamount) + '%';
 
         //#6 Quantity of line record
         //Make a function that sum up the total number of lines
-        g_txtFile := g_txtFile + Format(getTotalLines()) + '%';
+        //g_txtFile := g_txtFile + Format(getTotalLines(rec)) + '%';
+        g_txtFile := g_txtFile + format(rowCount) + '%';
 
         //#7 Settlement Mode
         g_txtFile := g_txtFile + FirstLineSettlementMode + '%';
@@ -219,7 +259,7 @@ codeunit 50001 BankExportGIROFAST
             g_txtFile := g_txtFile + grec_GenJournalLine."Posting Indicator" + '%';
 
         //#9 Posting Date
-        g_txtFile := g_txtFile + txtPostYear + txtPostMonth + txtPostDay;
+        g_txtFile := g_txtFile + txtPostDay + txtPostMonth + txtPostYear;
 
         OutStr.WriteText(g_txtFile + CR + LF);
         //OutStr.Write(g_txtFile);
@@ -266,8 +306,9 @@ codeunit 50001 BankExportGIROFAST
                         g_txtFile := g_txtFile + grec_Vendor.Name + '%';
 
                         //#3 Local amount paid (2 decimal places)
-                        //g_txtFile := g_txtFile + format(grec_GenJournalLine.Amount) + '%';
-                        g_txtFile := g_txtFile + convertDecimal(grec_GenJournalLine.Amount) + '%';
+                        g_txtFile := g_txtFile + format(grec_GenJournalLine.Amount) + '%';
+                        //g_txtFile := g_txtFile + convertDecimal(grec_GenJournalLine.Amount) + '%';
+                        //Message(format(grec_GenJournalLine.Amount));
 
                         //#4 Currency code
                         if (grec_GenJournalLine."Currency Code" = '') then
@@ -287,7 +328,12 @@ codeunit 50001 BankExportGIROFAST
 
                         //#6 Remark Info to Counterparty (35)
                         g_txtFile := g_txtFile + cutExtraText(grec_GenJournalLine.Description, 35);
-
+                        /*
+                        if (StrLen(grec_GenJournalLine.Description) > 35) then
+                            g_txtFile := g_txtFile + '%'
+                        else
+                            g_txtFile := g_txtFile + grec_GenJournalLine.Description;
+                        */
 
                         OutStr.WriteText(g_txtFile + CR + LF);
                         //----------------Detailed Payment records end--------------//
@@ -314,7 +360,7 @@ codeunit 50001 BankExportGIROFAST
     end;
 
     //Get the total lines for payment journal
-    procedure getTotalLines(): Integer
+    procedure getTotalLines(var rec: Record "Gen. Journal Line"): Integer
     var
         GenJnLine: Record "Gen. Journal Line";
         TempGenJnLine1: Record "Gen. Journal Line" temporary;
@@ -352,7 +398,7 @@ codeunit 50001 BankExportGIROFAST
     end;
 
     //Get the total amount for payment journal
-    procedure getTotalAmount(): Decimal
+    procedure getTotalAmount(var rec: Record "Gen. Journal Line"): Decimal
     var
         GenJnLine: Record "Gen. Journal Line";
         TempGenJnLine1: Record "Gen. Journal Line" temporary;
@@ -415,14 +461,15 @@ codeunit 50001 BankExportGIROFAST
         if ((Input - Round(Input, 1, '<')) <> 0) then begin
             //ReturnText := DelChr(Format(Input), '=', '.');
             //ReturnText := DelChr(Format(ReturnText), '=', ',');
-            if (StrLen(DelChr(Format(Input - Round(Input, 1, '<')), '=', '.')) = 2) then
-                ReturnText := ReturnText + '0';
+            //if (StrLen(DelChr(Format(Input - Round(Input, 1, '<')), '=', '.')) = 2) then
+            //ReturnText := ReturnText + '0';
             //Message('%1', DelChr(Format(Input - Round(Input, 1, '<')), '=', '.'));
+            ReturnText := Format(Input) + '0';
             exit(ReturnText);
         end;
         //ReturnText := DelChr(Format(Input), '=', '.');
         //ReturnText := DelChr(Format(ReturnText), '=', ',');
-        ReturnText := ReturnText + '.00';
+        ReturnText := Format(Input) + '.00';
         exit(ReturnText);
     end;
 }
