@@ -313,7 +313,7 @@ codeunit 50001 BankExportGIROFAST
                         g_txtFile := g_txtFile + grec_Vendor.Name + '%';
 
                         //#3 Local amount paid (2 decimal places)
-                        g_txtFile := g_txtFile + format(grec_GenJournalLine.Amount) + '%';
+                        g_txtFile := g_txtFile + convertDecimal(grec_GenJournalLine.Amount) + '%';
                         //g_txtFile := g_txtFile + convertDecimal(grec_GenJournalLine.Amount) + '%';
                         //Message(format(grec_GenJournalLine.Amount));
 
@@ -473,16 +473,20 @@ codeunit 50001 BankExportGIROFAST
             //if (StrLen(DelChr(Format(Input - Round(Input, 1, '<')), '=', '.')) = 2) then
             //ReturnText := ReturnText + '0';
             //Message('%1', DelChr(Format(Input - Round(Input, 1, '<')), '=', '.'));
-            if ((Input - Round(Input, 1, '<') mod 0.1) <> 0) then begin
+            if ((Input - Round(Input, 1, '<') mod 0.1) = 0) then begin
                 ReturnText := Format(Input);
+                ReturnText := DelChr(Format(ReturnText), '=', ',');
                 exit(ReturnText);
             end;
             ReturnText := Format(Input) + '0';
+            ReturnText := DelChr(Format(ReturnText), '=', ',');
             exit(ReturnText);
         end
         else
             if ((Input - Round(Input, 1, '<')) = 0) then begin
-                ReturnText := Format(Input) + '.00';
+                //ReturnText := Format(Input) + '.00';
+                ReturnText := Format(Input);
+                ReturnText := DelChr(Format(ReturnText), '=', ',');
                 exit(ReturnText);
             end;
     end;
