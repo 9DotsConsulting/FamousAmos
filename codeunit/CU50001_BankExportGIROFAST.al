@@ -313,7 +313,8 @@ codeunit 50001 BankExportGIROFAST
                         g_txtFile := g_txtFile + grec_Vendor.Name + '%';
 
                         //#3 Local amount paid (2 decimal places)
-                        g_txtFile := g_txtFile + convertDecimal(grec_GenJournalLine.Amount) + '%';
+                        g_txtFile := g_txtFile + DelChr(Format(grec_GenJournalLine.Amount), '=', ',') + '%';
+                        //g_txtFile := g_txtFile + Format(grec_GenJournalLine.Amount) + '%';
                         //g_txtFile := g_txtFile + convertDecimal(grec_GenJournalLine.Amount) + '%';
                         //Message(format(grec_GenJournalLine.Amount));
 
@@ -343,14 +344,11 @@ codeunit 50001 BankExportGIROFAST
                         */
 
                         OutStr.WriteText(g_txtFile + CR + LF);
-                        //----------------Detailed Payment records end--------------//
+                    //----------------Detailed Payment records end--------------//
 
-                        rowCount += 1;
-                    //Message('Sub Loop %1', rowCount);
-                    //Message(format(grec_GenJournalLine.Amount));
+                    //rowCount += 1;
                     until grec_GenJournalLine.Next() = 0;
-                //Message('Main Loop');
-                totalamount += Abs(TempGenJnLine.Amount);
+            //totalamount += Abs(TempGenJnLine.Amount);
             until TempGenJnLine.Next() = 0;
 
         filename := filename1 + '.txt';
@@ -461,7 +459,7 @@ codeunit 50001 BankExportGIROFAST
         exit(returnText);
     end;
 
-    //Convert Decimal to Text while maintaining at least 2 decimal places
+    //Convert Decimal to Text while maintaining at least 2 decimal places (use for decimal number that has been added together)
     procedure convertDecimal(Input: Decimal): Text
     var
         Result: Decimal;
@@ -474,11 +472,12 @@ codeunit 50001 BankExportGIROFAST
             //ReturnText := ReturnText + '0';
             //Message('%1', DelChr(Format(Input - Round(Input, 1, '<')), '=', '.'));
             if ((Input - Round(Input, 1, '<') mod 0.1) = 0) then begin
-                ReturnText := Format(Input);
+                ReturnText := Format(Input) + '0';
                 ReturnText := DelChr(Format(ReturnText), '=', ',');
                 exit(ReturnText);
             end;
-            ReturnText := Format(Input) + '0';
+            //Return for number with 2 decimals
+            ReturnText := Format(Input);
             ReturnText := DelChr(Format(ReturnText), '=', ',');
             exit(ReturnText);
         end
