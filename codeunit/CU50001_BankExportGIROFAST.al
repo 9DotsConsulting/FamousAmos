@@ -274,6 +274,7 @@ codeunit 50001 BankExportGIROFAST
 
         if TempGenJnLine.FindFirst then
             repeat
+
                 //looping for lines
                 //get vendor bank info
                 grec_GenJournalLine.Reset;
@@ -292,6 +293,12 @@ codeunit 50001 BankExportGIROFAST
 
                 if grec_GenJournalLine.FindFirst then
                     repeat
+
+                        grec_Vendor.Get(grec_GenJournalLine."Account No.");
+                        VendBankAcc.Reset;
+                        VendBankAcc.SetRange("Vendor No.", grec_Vendor."No.");
+                        if not VendBankAcc.Find('-') then
+                            Error('Vendor bank account of vendor %1 is not setup', grec_Vendor."No.");
 
                         //---------------Detailed Payment records start-------------//
 
@@ -316,17 +323,17 @@ codeunit 50001 BankExportGIROFAST
                         else
                             g_txtFile := g_txtFile + grec_GenJournalLine."Currency Code" + '%';
 
-                        //#4 SWIFTCode or Proxy Type
+                        //#5 SWIFTCode or Proxy Type
                         //if (FirstLineServiceCode = '3') and (FirstLineSettlementMode = 'PayNow FAST') or (FirstLineSettlementMode = 'PayNow GIRO') then
                         if (FirstLineServiceCode = '3') and (FirstLineSettlementMode = 'F') or (FirstLineSettlementMode = 'G') then
                             g_txtFile := g_txtFile + VendBankAcc."Payroll Proxy Type" + '%'
                         else
                             g_txtFile := g_txtFile + VendBankAcc."SWIFT Code" + '%';
 
-                        //#5 Purpose Code
+                        //#6 Purpose Code
                         g_txtFile := g_txtFile + grec_GenJournalLine."Purpose Code" + '%';
 
-                        //#6 Remark Info to Counterparty (35)
+                        //#7 Remark Info to Counterparty (35)
                         g_txtFile := g_txtFile + cutExtraText(grec_GenJournalLine.Description, 35);
                         /*
                         if (StrLen(grec_GenJournalLine.Description) > 35) then
@@ -339,8 +346,10 @@ codeunit 50001 BankExportGIROFAST
                         //----------------Detailed Payment records end--------------//
 
                         rowCount += 1;
+                    //Message('Sub Loop %1', rowCount);
+                    //Message(format(grec_GenJournalLine.Amount));
                     until grec_GenJournalLine.Next() = 0;
-
+                //Message('Main Loop');
                 totalamount += Abs(TempGenJnLine.Amount);
             until TempGenJnLine.Next() = 0;
 
@@ -464,12 +473,17 @@ codeunit 50001 BankExportGIROFAST
             //if (StrLen(DelChr(Format(Input - Round(Input, 1, '<')), '=', '.')) = 2) then
             //ReturnText := ReturnText + '0';
             //Message('%1', DelChr(Format(Input - Round(Input, 1, '<')), '=', '.'));
+            if ((Input - Round(Input, 1, '<') mod 0.1) <> 0) then begin
+                ReturnText := Format(Input);
+                exit(ReturnText);
+            end;
             ReturnText := Format(Input) + '0';
             exit(ReturnText);
-        end;
-        //ReturnText := DelChr(Format(Input), '=', '.');
-        //ReturnText := DelChr(Format(ReturnText), '=', ',');
-        ReturnText := Format(Input) + '.00';
-        exit(ReturnText);
+        end
+        else
+            if ((Input - Round(Input, 1, '<')) = 0) then begin
+                ReturnText := Format(Input) + '.00';
+                exit(ReturnText);
+            end;
     end;
 }
