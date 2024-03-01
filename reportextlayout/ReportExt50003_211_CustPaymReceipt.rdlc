@@ -2484,7 +2484,7 @@ Fields!CompanyInfoBankAccountNo.Value, 2)</Hidden>
           <Style />
         </PageHeader>
         <PageFooter>
-          <Height>6.33cm</Height>
+          <Height>6.18881cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2644,112 +2644,124 @@ Fields!CompanyInfoBankAccountNo.Value, 2)</Hidden>
                     </Border>
                   </Style>
                 </Line>
-                <Textbox Name="Textbox25">
-                  <CanGrow>true</CanGrow>
+                <Rectangle Name="Rectangle4">
+                  <ReportItems>
+                    <Image Name="Image2">
+                      <Source>Embedded</Source>
+                      <Value>amos_icon</Value>
+                      <Sizing>FitProportional</Sizing>
+                      <Height>1.73575cm</Height>
+                      <Width>0.62736cm</Width>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </Image>
+                    <Textbox Name="Textbox25">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Famous Amos Singapore</Value>
+                              <Style>
+                                <FontFamily>segoe ui</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox14</rd:DefaultName>
+                      <Top>0.09991cm</Top>
+                      <Left>0.62736cm</Left>
+                      <Height>0.42298cm</Height>
+                      <Width>3.80461cm</Width>
+                      <ZIndex>1</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </Textbox>
+                    <Textbox Name="Textbox26">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>@famousamossg</Value>
+                              <Style>
+                                <FontFamily>segoe ui</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox14</rd:DefaultName>
+                      <Top>0.59345cm</Top>
+                      <Left>0.62736cm</Left>
+                      <Height>0.37747cm</Height>
+                      <Width>3.80461cm</Width>
+                      <ZIndex>2</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </Textbox>
+                    <Textbox Name="Textbox27">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>www.famous-amos.com.sg</Value>
+                              <Style>
+                                <FontFamily>segoe ui</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox14</rd:DefaultName>
+                      <Top>1.07675cm</Top>
+                      <Left>0.62736cm</Left>
+                      <Height>0.35673cm</Height>
+                      <Width>3.80461cm</Width>
+                      <ZIndex>3</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </Textbox>
+                  </ReportItems>
                   <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>Famous Amos Singapore</Value>
-                          <Style>
-                            <FontFamily>segoe ui</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox14</rd:DefaultName>
                   <Top>0.06463cm</Top>
-                  <Left>11.44711cm</Left>
-                  <Height>0.48761cm</Height>
-                  <Width>6.3021cm</Width>
+                  <Left>10.80842cm</Left>
+                  <Height>1.73575cm</Height>
+                  <Width>4.43197cm</Width>
                   <ZIndex>5</ZIndex>
                   <Style>
                     <Border>
                       <Style>None</Style>
                     </Border>
                   </Style>
-                </Textbox>
-                <Textbox Name="Textbox26">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>@famousamossg</Value>
-                          <Style>
-                            <FontFamily>segoe ui</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox14</rd:DefaultName>
-                  <Top>0.55224cm</Top>
-                  <Left>11.44711cm</Left>
-                  <Height>0.44803cm</Height>
-                  <Width>6.3021cm</Width>
-                  <ZIndex>6</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox27">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>www.famous-amos.com.sg</Value>
-                          <Style>
-                            <FontFamily>segoe ui</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox14</rd:DefaultName>
-                  <Top>1.03555cm</Top>
-                  <Left>11.44711cm</Left>
-                  <Height>0.48761cm</Height>
-                  <Width>6.3021cm</Width>
-                  <ZIndex>7</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                  </Style>
-                </Textbox>
-                <Image Name="Image2">
-                  <Source>Embedded</Source>
-                  <Value>amos_icon</Value>
-                  <Sizing>FitProportional</Sizing>
-                  <Top>0.06463cm</Top>
-                  <Left>10.81975cm</Left>
-                  <Height>1.73575cm</Height>
-                  <Width>0.59208cm</Width>
-                  <ZIndex>8</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                  </Style>
-                </Image>
+                </Rectangle>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
               <Top>3.83cm</Top>
-              <Height>2.5cm</Height>
+              <Height>2.35881cm</Height>
               <Width>18.09866cm</Width>
               <Style>
                 <Border>
@@ -2799,7 +2811,6 @@ Fields!CompanyInfoBankAccountNo.Value, 2)</Hidden>
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0cm</Top>
               <Height>2.5cm</Height>
               <Width>5cm</Width>
               <ZIndex>1</ZIndex>
