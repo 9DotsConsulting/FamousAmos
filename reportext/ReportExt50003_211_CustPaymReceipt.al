@@ -17,6 +17,8 @@ reportextension 50003 "DOT - Cust. Payment Receipt" extends "Customer - Payment 
             column(Phone_No; CI."Phone No.") { }
             column(CoRegNo; CI."Registration No.") { }
             column(BalAccountNo; BalAccountNo) { }
+            column(Payment_Method_Code; "Payment Method Code") { }
+            column(ChequeNo; GetGenJnlLineComment("Document No.")) { }
         }
         modify("Cust. Ledger Entry")
         {
@@ -78,6 +80,18 @@ reportextension 50003 "DOT - Cust. Payment Receipt" extends "Customer - Payment 
         PostedApprEntry.SetRange("Sequence No.", No);
         if PostedApprEntry.FindFirst() then
             exit(Format(PostedApprEntry."Last Modified By ID"))
+        else
+            exit('');
+    end;
+
+    local procedure GetGenJnlLineComment(DocNo: Code[20]): Text
+    var
+        PostedGenJnlLine: Record "Posted Gen. Journal Line";
+    begin
+        PostedGenJnlLine.Reset();
+        PostedGenJnlLine.SetRange("Document No.", DocNo);
+        if PostedGenJnlLine.FindFirst() then
+            exit(PostedGenJnlLine.Comment)
         else
             exit('');
     end;
