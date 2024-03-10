@@ -157,11 +157,10 @@ codeunit 50001 BankExportGIROFAST
         ELSE
             txtPostMonth := FORMAT(DATE2DMY(TempGenJnLine."Posting Date", 2));
         IF DATE2DMY(TempGenJnLine."Posting Date", 1) < 10 THEN
-            txtPostDay := '0' + FORMAT(TempGenJnLine."Posting Date", 1)
+            txtPostDay := '0' + FORMAT(DATE2DMY(TempGenJnLine."Posting Date", 1))
         ELSE
             txtPostDay := FORMAT(DATE2DMY(TempGenJnLine."Posting Date", 1));
         txtPostYear := FORMAT(DATE2DMY(TempGenJnLine."Posting Date", 3));
-
 
         //Get payment type value
         TempGenJnLine.SetRange("Journal Template Name", rec."Journal Template Name");
@@ -225,18 +224,16 @@ codeunit 50001 BankExportGIROFAST
         g_txtFile := FirstLineServiceCode + '%';
 
         //#2 Bal. Account No (Comp bank account) (10)
-        //g_txtFile := g_txtFile + bankAccount."No." + '%';
-        g_txtFile := g_txtFile + bankAccount."Bank Account No." + '%';
+        g_txtFile := g_txtFile + DelChr(bankAccount."Bank Account No.", '=', '-') + '%';
 
         //#3 Company name
         g_txtFile := g_txtFile + CompInfo.Name + '%';
 
         //#4 Currency code (if blank use lcy)
         if (grec_GenJournalLine."Currency Code" = '') then
-            g_txtFile := g_txtFile + 'SGD'
+            g_txtFile := g_txtFile + 'SGD' + '%'
         else
-            g_txtFile := g_txtFile + 'SGD';
-        g_txtFile := g_txtFile + grec_GenJournalLine."Currency Code";
+            g_txtFile := g_txtFile + grec_GenJournalLine."Currency Code" + '%';
 
         //#5 Total Batch Amount (2 decimals place)
         //Make a function that sum up all the payment lines
