@@ -96,8 +96,10 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             //Field 26: Custom field
             column(Deliver_On; "Deliver On") { }
             column(Currency_Code; Curr_Code) { }
-
             column(Comment_Line; CommentLine) { }
+            //column(Note; Note) { }
+            column(Note; GetFixedNote()) { }
+            //column(CompBankAcc; CI."Bank Account No.") { }
 
         }
         add(Line)
@@ -362,6 +364,21 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             until (SIL.Next = 0);
             exit(TLineAmount);
         end;
+    end;
+
+    local procedure GetFixedNote(): Text
+    var
+        returnText: Text[500];
+        text1: Text[100];
+        text2: Text[100];
+        CR, LF : Char;
+    begin
+        CR := 13;
+        LF := 10;
+        text1 := 'PLEASE REMIT PAYMENT TO UOB BANK,' + CR + LF;
+        text2 := ' OR CROSSED CHEQUE PAYABLE TO' + CR + LF;
+        returnText := text1 + 'A/C # ' + CI."Bank Account No." + text2 + '"' + CI.Name + '"';
+        exit(returnText);
     end;
 
     trigger OnPreReport()

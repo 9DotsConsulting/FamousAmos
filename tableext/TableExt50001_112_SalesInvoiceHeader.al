@@ -12,5 +12,12 @@ tableextension 50001 SalesInvoiceHeader extends "Sales Invoice Header"
             Caption = 'Ship-to Phone No.';
             TableRelation = "Ship-to Address"."Phone No." where("Customer No." = field("Sell-to Customer No."));
         }
+        //FDD 1.4 starts
+        field(50003; "Note"; Text[500])
+        {
+            Caption = 'Note';
+            DataClassification = ToBeClassified;
+        }
+        //FDD 1.4 ends
     }
 }
