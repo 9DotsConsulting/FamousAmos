@@ -12,6 +12,7 @@ reportextension 50004 "DOT Sales Shipment" extends "Sales - Shipment"
             column(VAT_Registration_No_; CI."VAT Registration No.") { }
             column(Deliver_On; "Deliver On") { }
             column(Salesperson_Code; "Salesperson Code") { }
+            column(Sell_to_Phone_No_; "Sell-to Phone No.") { }
         }
         add(CopyLoop)
         {
@@ -38,6 +39,8 @@ reportextension 50004 "DOT Sales Shipment" extends "Sales - Shipment"
         {
             trigger OnAfterAfterGetRecord()
             begin
+                clear(Comments);
+
                 CrLf[1] := 13;
                 CrLf[2] := 10;
                 Line := "Sales Shipment Line";
@@ -67,7 +70,7 @@ reportextension 50004 "DOT Sales Shipment" extends "Sales - Shipment"
 
     rendering
     {
-        layout("Famous Amos - Sales Shipment")
+        layout("9 DOTS - Sales Shipment")
         {
             Type = RDLC;
             LayoutFile = './reportextlayout/ReportExt50004_208_SalesShipment.rdlc';

@@ -25,10 +25,7 @@ codeunit 50002 "DOT Subscribers"
                 exit;
             end;
 
-            ok := SO.Contains('SO-ONL');
-            if ok then begin
-                exit;
-            end else begin
+            if SalesHeader."No. Series" = 'SO-CORP' then begin
                 // Need to add additional handling such as posting Ship + Invoice and Invoice
                 IsHandled := true; //else (CORP) use multiple posting
                                    // Loop 3 times, but you will need to find and calculate how many different Shipping Address
@@ -58,7 +55,8 @@ codeunit 50002 "DOT Subscribers"
                     SalesPost.Run(SalesHeader);
                     NoOfShip -= 1;
                 until NoOfShip = 0;
-            end;
+            end else
+                exit;
         end else
             exit;
     end;
@@ -76,13 +74,7 @@ codeunit 50002 "DOT Subscribers"
             if SalesLine.Count < 1 then begin
                 exit;
             end;
-
-            SO := SalesHeader."No.";
-            ok := SO.Contains('SO-ONL');
-            if ok then begin//if ONLINE then use standard posting
-                exit;
-            end else begin
-
+            if SalesHeader."No. Series" = 'SO-CORP' then begin
                 // TempSalesLine is to copy from SalesLine record
                 TempSalesLine.SetRange("Document Type", SalesLine."Document Type");
                 TempSalesLine.SetRange("Document No.", SalesLine."Document No.");
@@ -104,11 +96,10 @@ codeunit 50002 "DOT Subscribers"
                     SalesLine.SetFilter("Qty. to Ship", '<>%1', 0);
                     SalesLine.FindSet();
                 end;
-            end;
+            end else
+                exit;
         end else if SalesHeader."Document Type" = "Sales Document Type"::Invoice then begin
-            SI := SalesHeader."No.";
-            ok := SI.Contains('S-INV');
-            if ok then begin
+            if SalesHeader."Posting No. Series" = 'S-INV' then begin
                 exit;
             end else begin
                 SalesLine.SetFilter("Shipment No.", '<>%1', '');
@@ -163,12 +154,7 @@ codeunit 50002 "DOT Subscribers"
                 exit;
             end;
 
-            SO := SalesHeader."No.";
-            ok := SO.Contains('SO-ONL');
-            if ok then begin
-                //if ONLINE then use standard posting
-                exit;
-            end else begin
+            if SalesHeader."No. Series" = 'SO-CORP' then begin
                 TempSalesLineGlobal.SetFilter("Qty. to Ship", '<>%1', 0);
                 TempSalesLineGlobal.FindFirst();
                 MultiAddress.SetRange(Name, TempSalesLineGlobal."Delivery Address");
@@ -184,7 +170,8 @@ codeunit 50002 "DOT Subscribers"
                     repeat
                         SalesShptLine.Delete(true);
                     until SalesShptLine.next = 0;
-            end;
+            end else
+                exit;
             // end else if SalesHeader."Document Type" = "Sales Document Type"::Invoice then begin
             //     TempSalesLineGlobal.SetFilter("Qty. to Invoice", '<>1', 0);
             //     TempSalesLineGlobal.FindFirst();

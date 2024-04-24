@@ -12,32 +12,24 @@ tableextension 50003 SalesLine extends "Sales Line"
                 SalesLine: Record "Sales Line";
                 SalesHeader: Record "Sales Header";
             begin
-                //SalesHeader.Get();
+                CommentLine.reset;
                 SalesLine.reset;
                 SalesLine.SetRange("Document No.", rec."Document No.");
                 SalesLine.SetRange("Item Group No.", rec."Item Group No.");
                 if SalesLine.findfirst then begin
+                    CommentLine.SetRange("Document Type", SalesLine."Document Type");
                     CommentLine.SetRange("No.", SalesLine."Document No.");
                     CommentLine.SetRange("Document Line No.", SalesLine."Line No.");
-                    CommentLine.FindSet();
-                    //repeat
-                    CommentLine02.Init();
-                    //CommentLine02.Validate("Line No.", CommentLine."Line No.");
-                    CommentLine02.validate("Document Line No.", Rec."Line No.");
-                    CommentLine02.Insert();
-                    //until CommentLine.next = 0;
-
-                    // if CommentLine.Count < 1 then begin
-                    //     repeat
-                    //         CommentLine02.SetRange("No.", Rec."Document No.");
-                    //         //CommentLine02.SetFilter("Line No.", '>10000');
-                    //         CommentLine02.findfirst;
-                    //         CommentLine02.init;
-                    //         CommentLine02.Validate("Line No.", CommentLine."Line No.");
-                    //         CommentLine02.Insert();
-                    //     until CommentLine.next = 0;
-                    // end;
-
+                    if CommentLine.findfirst then
+                        CommentLine02.CopyLineComments(rec."Document Type", rec."Document Type", CommentLine."No.", Rec."Document No.", CommentLine."Document Line No.", Rec."Line No.");
+                end else begin
+                    CommentLine.SetRange("Document Type", rec."Document Type");
+                    CommentLine.SetRange("No.", rec."Document No.");
+                    CommentLine.SetRange("Document Line No.", Rec."Line No.");
+                    if CommentLine.FindFirst then
+                        CommentLine.DeleteComments(Rec."Document Type", Rec."Document No.")
+                    else
+                        exit;
                 end;
 
 

@@ -671,14 +671,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="textbox111">
+                                          <Textbox Name="Textbox27">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!No_SalesShptLine.Value</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontStyle>Normal</FontStyle>
                                                       <FontFamily>Segoe UI</FontFamily>
@@ -691,16 +691,13 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
-                                            <ZIndex>33</ZIndex>
-                                            <DataElementOutput>NoOutput</DataElementOutput>
+                                            <rd:DefaultName>Textbox27</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>None</Style>
                                               </Border>
                                               <RightBorder>
-                                                <Color>Black</Color>
                                                 <Style>Solid</Style>
-                                                <Width>1pt</Width>
                                               </RightBorder>
                                               <VerticalAlign>Top</VerticalAlign>
                                               <PaddingRight>5pt</PaddingRight>
@@ -1004,14 +1001,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="textbox6">
+                                          <Textbox Name="Textbox25">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!PostedAsmLineItemNo.Value</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontStyle>Normal</FontStyle>
                                                       <FontFamily>Segoe UI</FontFamily>
@@ -1024,15 +1021,13 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>textbox6</rd:DefaultName>
+                                            <rd:DefaultName>Textbox25</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>None</Style>
                                               </Border>
                                               <RightBorder>
-                                                <Color>Black</Color>
                                                 <Style>Solid</Style>
-                                                <Width>1pt</Width>
                                               </RightBorder>
                                               <VerticalAlign>Top</VerticalAlign>
                                               <PaddingRight>5pt</PaddingRight>
@@ -1931,7 +1926,7 @@ Cstr(Fields!Shipto2.Value) + Chr(177) +
 Cstr(Fields!Shipto3.Value) + Chr(177) + 
 Cstr(Fields!Shipto4.Value) + Chr(177) + 
 Cstr(Fields!Shipto5.Value) + Chr(177) + 
-Cstr(Fields!SelltoCustNo_SalesShptHeaderCaption.Value) + Chr(177) + 
+Cstr(Fields!Sell_to_Phone_No_.Value) + Chr(177) + 
 Cstr(Fields!ShipmentDateCaption.Value) + Chr(177) + 
 Cstr(Fields!ShipmentNoCaption.Value) + Chr(177) + 
 Cstr(Fields!HomePageCaption.Value) + Chr(177) + 
@@ -2750,7 +2745,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
               <Top>2.62595cm</Top>
               <Left>0.03388cm</Left>
               <Height>11pt</Height>
-              <Width>8.66685cm</Width>
+              <Width>10.55611cm</Width>
               <Style>
                 <VerticalAlign>Middle</VerticalAlign>
               </Style>
@@ -2777,7 +2772,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
               <Top>2.2347cm</Top>
               <Left>0.03388cm</Left>
               <Height>11pt</Height>
-              <Width>8.66685cm</Width>
+              <Width>10.55611cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <VerticalAlign>Middle</VerticalAlign>
@@ -2806,7 +2801,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
               <Top>1.83253cm</Top>
               <Left>0.03387cm</Left>
               <Height>11pt</Height>
-              <Width>8.66687cm</Width>
+              <Width>10.55613cm</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <VerticalAlign>Middle</VerticalAlign>
@@ -2975,7 +2970,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
               <Top>3.01401cm</Top>
               <Left>0.03389cm</Left>
               <Height>11pt</Height>
-              <Width>8.66685cm</Width>
+              <Width>10.55611cm</Width>
               <ZIndex>7</ZIndex>
               <Style>
                 <VerticalAlign>Middle</VerticalAlign>
@@ -3003,7 +2998,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
               <Top>3.40206cm</Top>
               <Left>0.03388cm</Left>
               <Height>11pt</Height>
-              <Width>8.66685cm</Width>
+              <Width>10.55611cm</Width>
               <ZIndex>8</ZIndex>
               <Style>
                 <VerticalAlign>Middle</VerticalAlign>
@@ -3043,7 +3038,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>=Code.GetData(7,1)</Value>
+                          <Value />
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
@@ -3068,7 +3063,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>=Code.GetData(6,1)</Value>
+                          <Value />
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
@@ -3093,7 +3088,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>=Code.GetData(8,1)</Value>
+                          <Value />
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
@@ -3118,7 +3113,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>=Code.GetData(5,1)</Value>
+                          <Value>="TEL: " + Code.GetData(38,1)</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
@@ -3432,7 +3427,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>=Code.GetData(37,1)</Value>
+                          <Value>="TEL: " + Code.GetData(38,1)</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
@@ -4382,6 +4377,9 @@ R3A6VnRfD/SvF2g3eqfD6bUHez5msdQjGW/65uOCfavU+qYJq1369Dk9tXvdpeh9SI6uisjBlYZBByCK
         </Field>
         <Field Name="Salesperson_Code">
           <DataField>Salesperson_Code</DataField>
+        </Field>
+        <Field Name="Sell_to_Phone_No_">
+          <DataField>Sell_to_Phone_No_</DataField>
         </Field>
         <Field Name="Shipto1">
           <DataField>Shipto1</DataField>
