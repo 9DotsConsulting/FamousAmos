@@ -13,6 +13,19 @@ reportextension 50004 "DOT Sales Shipment" extends "Sales - Shipment"
             column(Deliver_On; "Deliver On") { }
             column(Salesperson_Code; "Salesperson Code") { }
             column(Sell_to_Phone_No_; "Sell-to Phone No.") { }
+            column(Delivery_to_phone; Delivery_to_phone) { }
+        }
+        modify("Sales Shipment Header")
+        {
+            trigger OnAfterAfterGetRecord()
+            var
+                MultipleAddress: Record "Multiple Delivery Address";
+            begin
+                MultipleAddress.reset;
+                MultipleAddress.SetRange("Customer No.", "Sales Shipment Header"."Sell-to Customer No.");
+                MultipleAddress.SetRange(Name, "Sales Shipment Header"."Ship-to Name");
+                if MultipleAddress.findfirst then Delivery_to_phone := MultipleAddress."Phone No.";
+            end;
         }
         add(CopyLoop)
         {
@@ -34,6 +47,8 @@ reportextension 50004 "DOT Sales Shipment" extends "Sales - Shipment"
         {
             column(RunningNo; RunningNo) { }
             column(Comments; Comments) { }
+            column(Item_Group_No_; "Item Group No.") { }
+            column(Unit_Price; "Unit Price") { }
         }
         modify("Sales Shipment Line")
         {
@@ -54,11 +69,11 @@ reportextension 50004 "DOT Sales Shipment" extends "Sales - Shipment"
                 CommentLine.SetRange("No.", "Sales Shipment Line"."Document No.");
                 CommentLine.SetRange("Document Line No.", "Sales Shipment Line"."Line No.");
                 CommentLine.SetFilter("Document Type", 'Shipment');
-                if CommentLine.findlast then
+                CommentLine.SetAscending("Line No.", false);
+                if CommentLine.findset then
                     repeat
                         Comments := CommentLine.Comment + CrLf + Comments;
                     until CommentLine.next = 0;
-
             end;
         }
     }
@@ -99,4 +114,5 @@ reportextension 50004 "DOT Sales Shipment" extends "Sales - Shipment"
         Comments: text;
         CommentLine: record "Sales Comment Line";
         CrLf: text[2];
+        Delivery_to_phone: text[30];
 }

@@ -639,7 +639,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Code.BlankZero(Fields!Qty_SalesShptLine.Value)</Value>
+                                                    <Value>=Sum(Fields!Qty_SalesShptLine.Value)</Value>
                                                     <Style>
                                                       <FontStyle>Normal</FontStyle>
                                                       <FontFamily>Segoe UI</FontFamily>
@@ -667,6 +667,7 @@
                                               <PaddingRight>5pt</PaddingRight>
                                             </Style>
                                           </Textbox>
+                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -1781,8 +1782,9 @@
                                   <TablixMember>
                                     <Group Name="table2_Group1">
                                       <GroupExpressions>
-                                        <GroupExpression>=Fields!DocumentNo_SalesShptLine.Value</GroupExpression>
-                                        <GroupExpression>=Fields!LinNo.Value</GroupExpression>
+                                        <GroupExpression>=Fields!Qty_SalesShptLineFormat.Value</GroupExpression>
+                                        <GroupExpression>=Fields!Item_Group_No_.Value</GroupExpression>
+                                        <GroupExpression>=Fields!Unit_Price.Value</GroupExpression>
                                       </GroupExpressions>
                                     </Group>
                                     <TablixMembers>
@@ -1927,7 +1929,7 @@ Cstr(Fields!Shipto3.Value) + Chr(177) +
 Cstr(Fields!Shipto4.Value) + Chr(177) + 
 Cstr(Fields!Shipto5.Value) + Chr(177) + 
 Cstr(Fields!Sell_to_Phone_No_.Value) + Chr(177) + 
-Cstr(Fields!ShipmentDateCaption.Value) + Chr(177) + 
+Cstr(Fields!Delivery_to_phone.Value) + Chr(177) + 
 Cstr(Fields!ShipmentNoCaption.Value) + Chr(177) + 
 Cstr(Fields!HomePageCaption.Value) + Chr(177) + 
 Cstr(Fields!EmailCaption.Value) + Chr(177) + 
@@ -3113,7 +3115,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>="TEL: " + Code.GetData(38,1)</Value>
+                          <Value>="TEL: " + Code.GetData(39,1)</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
@@ -4381,6 +4383,9 @@ R3A6VnRfD/SvF2g3eqfD6bUHez5msdQjGW/65uOCfavU+qYJq1369Dk9tXvdpeh9SI6uisjBlYZBByCK
         <Field Name="Sell_to_Phone_No_">
           <DataField>Sell_to_Phone_No_</DataField>
         </Field>
+        <Field Name="Delivery_to_phone">
+          <DataField>Delivery_to_phone</DataField>
+        </Field>
         <Field Name="Shipto1">
           <DataField>Shipto1</DataField>
         </Field>
@@ -4404,6 +4409,15 @@ R3A6VnRfD/SvF2g3eqfD6bUHez5msdQjGW/65uOCfavU+qYJq1369Dk9tXvdpeh9SI6uisjBlYZBByCK
         </Field>
         <Field Name="Comments">
           <DataField>Comments</DataField>
+        </Field>
+        <Field Name="Item_Group_No_">
+          <DataField>Item_Group_No_</DataField>
+        </Field>
+        <Field Name="Unit_Price">
+          <DataField>Unit_Price</DataField>
+        </Field>
+        <Field Name="Unit_PriceFormat">
+          <DataField>Unit_PriceFormat</DataField>
         </Field>
       </Fields>
       <Query>
