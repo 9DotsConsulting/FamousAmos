@@ -68,12 +68,15 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             column(Ship_to_Post_Code; "Ship-to Post Code") { }
             //Field 10.6: Ship-To Phone No
             //Need to make custom field
+            column(Ship_to_Phone_No_; ShiptoPhoneNo) { }
+
 
             //Field 11: Date (Document Date)
             column(Date; "Document Date") { }
 
             //Field 12: Delivery Order No (Your Reference) - Temporary link for Phase 1
-            column(Delivery_Order_No; "Your Reference") { }
+            //column(Delivery_Order_No; "Your Reference") { }
+            column(Delivery_Order_No; DO_NO_) { }
 
             //Field 13: Terms (Payment Terms code)
             column(Payment_Terms_Code; "Payment Terms Code") { }
@@ -91,7 +94,8 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             column(Salesperson_Code; "Salesperson Code") { }
 
             //Field 18: Sales Order No (Leave blank for phase 1)
-
+            //Phase 2
+            column(Order_No_; "Order No.") { }
 
             //Field 26: Custom field
             column(Deliver_On; "Deliver On") { }
@@ -158,6 +162,9 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             begin
                 if ("Currency Code" = '') then
                     Curr_Code := 'SGD';
+
+                ShiptoPhoneNo := GetShipToPhoneNo("Sell-to Customer No.");
+                DO_NO_ := GetDONoGL("No.", "Sell-to Customer No.", "Order No.");
             end;
         }
 
@@ -243,17 +250,13 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
                 //TLineUP := GetTotalGroup(2, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.");
                 //TLineDisc := GetTotalGroup(3, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.");
                 //TLineAmount := GetTotalGroup(4, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.");
+                /*
                 NewGroupNo := "Item Group No.";
                 TLineQty := 0;
                 TLineUP := 0;
                 TLineDisc := 0;
                 TLineAmount := 0;
-                /*
-                if (Type.AsInteger() = 0) then begin
-                    CommentLine := Description;
-                    PrintLine := True;
-                end
-                */
+
                 if (Type.AsInteger() = 0) then begin
                     CommentLine := Description;
                     PrintLine := True;
@@ -265,9 +268,11 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
                         TLineUP := GetTotalGroup(2, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.");
                         TLineDisc := GetTotalGroup(3, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.");
                         TLineAmount := GetTotalGroup(4, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.");
+                        
                         if (CommentLine = '') then begin
                             CommentLine := Description;
                         end;
+                        
                         PrintLine := true;
                         OldGroupNo := NewGroupNo;
                         RunningNo += 1;
@@ -275,7 +280,177 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
                     end
                     else
                         PrintLine := false;
+                        */
+
+                /*
+                //Set the current line value
+                NewNo := "No.";
+                NewGroupNo := "Item Group No.";
+                NewUP := "Unit Price";
+
+                //Reset total for line value
+                TLineQty := 0;
+                TLineUP := 0;
+                TLineDisc := 0;
+                TLineAmount := 0;
+
+                //Get the description for description only line
+                Message(Format(NewNo));
+                if (Type.AsInteger() = 0) then begin
+                    CommentLine := Description;
+                    PrintLine := True;
+                end
+                else
+                    if (Type.AsInteger() = 1) then begin
+                        Message('Passed type check');
+                        if (NewNo <> OldNo) then
+                            if (NewGroupNo <> OldGroupNo) and (NewUP <> OldUP) then begin
+
+                                CommentLine := GetComment("Document No.", "Line No.", "Sell-to Customer No.");
+                                TLineQty := GetTotalGroup(1, "Sell-to Customer No.", "Document No.", "Line No.", "No.", "Item Group No.", "Unit Price");
+                                TLineUP := GetTotalGroup(2, "Sell-to Customer No.", "Document No.", "Line No.", "No.", "Item Group No.", "Unit Price");
+                                TLineDisc := GetTotalGroup(3, "Sell-to Customer No.", "Document No.", "Line No.", "No.", "Item Group No.", "Unit Price");
+                                TLineAmount := GetTotalGroup(4, "Sell-to Customer No.", "Document No.", "Line No.", "No.", "Item Group No.", "Unit Price");
+
+                                PrintLine := true;
+                                OldNo := NewNo;
+                                OldGroupNo := NewGroupNo;
+                                OldUP := NewUP;
+                                RunningNo += 1;
+                            end else
+                                if (NewNo = OldNo) then
+                                    if (NewGroupNo <> OldGroupNo) and (NewUP <> OldUP) then begin
+
+                                        CommentLine := GetComment("Document No.", "Line No.", "Sell-to Customer No.");
+                                        TLineQty := GetTotalGroup(1, "Sell-to Customer No.", "Document No.", "Line No.", "No.", "Item Group No.", "Unit Price");
+                                        TLineUP := GetTotalGroup(2, "Sell-to Customer No.", "Document No.", "Line No.", "No.", "Item Group No.", "Unit Price");
+                                        TLineDisc := GetTotalGroup(3, "Sell-to Customer No.", "Document No.", "Line No.", "No.", "Item Group No.", "Unit Price");
+                                        TLineAmount := GetTotalGroup(4, "Sell-to Customer No.", "Document No.", "Line No.", "No.", "Item Group No.", "Unit Price");
+
+                                        PrintLine := true;
+                                        OldNo := NewNo;
+                                        OldGroupNo := NewGroupNo;
+                                        OldUP := NewUP;
+                                        RunningNo += 1;
+                                    end else
+                                        PrintLine := false;
+                    end;
+                */
+
+                /*
+                //Set the current line value
+                //NewNo := "No.";
+                //GetGLNo("Document No.", "Line No.");
+                GetDORange("Sell-to Customer No.", "Document No.", "Line No.");
+                NewGroupNo := "Item Group No.";
+                NewUP := "Unit Price";
+
+                //Reset total for line value
+                TLineQty := 0;
+                TLineUP := 0;
+                TLineDisc := 0;
+                TLineAmount := 0;
+
+                //Get the description for description only line
+                //Message(Format(NewNo));
+                if (Type.AsInteger() = 0) then begin
+                    CommentLine := Description;
+                    PrintLine := True;
+                end
+                else
+                    if (Type.AsInteger() = 1) then begin
+
+                        if (NewGroupNo <> OldGroupNo) then begin
+
+                            CommentLine := GetComment("Document No.", "Line No.", "Sell-to Customer No.");
+                            TLineQty := GetTotalGroup(1, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.", "Unit Price");
+                            TLineUP := GetTotalGroup(2, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.", "Unit Price");
+                            TLineDisc := GetTotalGroup(3, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.", "Unit Price");
+                            TLineAmount := GetTotalGroup(4, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.", "Unit Price");
+
+                            PrintLine := true;
+                            OldNo := NewNo;
+                            OldGroupNo := NewGroupNo;
+                            OldUP := NewUP;
+                            RunningNo += 1;
+                        end else
+                            if (NewGroupNo = OldGroupNo) and (NewUP <> OldUP) then begin
+
+                                CommentLine := GetComment("Document No.", "Line No.", "Sell-to Customer No.");
+                                TLineQty := GetTotalGroup(1, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.", "Unit Price");
+                                TLineUP := GetTotalGroup(2, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.", "Unit Price");
+                                TLineDisc := GetTotalGroup(3, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.", "Unit Price");
+                                TLineAmount := GetTotalGroup(4, "Sell-to Customer No.", "Document No.", "Line No.", "Item Group No.", "Unit Price");
+
+                                PrintLine := true;
+                                OldNo := NewNo;
+                                OldGroupNo := NewGroupNo;
+                                OldUP := NewUP;
+                                RunningNo += 1;
+
+                            end else
+                                PrintLine := false;
+                    end;
+                    */
+
+
+                //Set the current line value
+                //NewNo := "No.";
+                NewNo := GetGLNo("Document No.", "Line No.");
+                NewGroupNo := "Item Group No.";
+                NewUP := "Unit Price";
+
+                //Reset total for line value
+                TLineQty := 0;
+                TLineUP := 0;
+                TLineDisc := 0;
+                TLineAmount := 0;
+
+                //Get the description for description only line
+                //Message(Format(NewNo));
+                if (Type.AsInteger() = 0) then begin
+                    CommentLine := Description;
+                    PrintLine := True;
+                end
+                else
+                    if (Type.AsInteger() = 1) then begin
+                        if (NewNo <> OldNo) then
+                            if (NewGroupNo <> OldGroupNo) and (NewUP <> OldUP) then begin
+
+                                CommentLine := GetComment("Document No.", "Line No.", "Sell-to Customer No.");
+                                TLineQty := GetTotalGroup(1, "Sell-to Customer No.", "Document No.", "Line No.", NewNo, "Item Group No.", "Unit Price");
+                                TLineUP := GetTotalGroup(2, "Sell-to Customer No.", "Document No.", "Line No.", NewNo, "Item Group No.", "Unit Price");
+                                TLineDisc := GetTotalGroup(3, "Sell-to Customer No.", "Document No.", "Line No.", NewNo, "Item Group No.", "Unit Price");
+                                TLineAmount := GetTotalGroup(4, "Sell-to Customer No.", "Document No.", "Line No.", NewNo, "Item Group No.", "Unit Price");
+
+                                PrintLine := true;
+                                OldNo := NewNo;
+                                OldGroupNo := NewGroupNo;
+                                OldUP := NewUP;
+                                RunningNo += 1;
+                            end else
+                                if (NewNo = OldNo) then
+                                    if (NewGroupNo <> OldGroupNo) and (NewUP <> OldUP) then begin
+
+                                        CommentLine := GetComment("Document No.", "Line No.", "Sell-to Customer No.");
+                                        TLineQty := GetTotalGroup(1, "Sell-to Customer No.", "Document No.", "Line No.", NewNo, "Item Group No.", "Unit Price");
+                                        TLineUP := GetTotalGroup(2, "Sell-to Customer No.", "Document No.", "Line No.", NewNo, "Item Group No.", "Unit Price");
+                                        TLineDisc := GetTotalGroup(3, "Sell-to Customer No.", "Document No.", "Line No.", NewNo, "Item Group No.", "Unit Price");
+                                        TLineAmount := GetTotalGroup(4, "Sell-to Customer No.", "Document No.", "Line No.", NewNo, "Item Group No.", "Unit Price");
+
+                                        PrintLine := true;
+                                        OldNo := NewNo;
+                                        OldGroupNo := NewGroupNo;
+                                        OldUP := NewUP;
+                                        RunningNo += 1;
+                                    end else
+                                        PrintLine := false;
+                        //end;
+                    end
+                    else if (Type.AsInteger() > 1) then
+                        PrintLine := true;
             end;
+
         }
     }
 
@@ -289,6 +464,202 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             //LayoutFile = './reportextlayout/ReportExt50100_1306_SalesInvoices.docx';
         }
     }
+
+    local procedure GetShipToPhoneNo(SellToCustNo: Code[20]): Text
+    var
+        ShipToAdd: Record "Ship-to Address";
+
+    begin
+        ShipToAdd.Reset();
+
+        /*
+        if (ShipToAdd.Get(SellToCustNo)) then begin
+            exit(ShipToAdd."Phone No.");
+        end;
+        */
+        ShipToAdd.SetFilter("Customer No.", SellToCustNo);
+        if (ShipToAdd.FindSet()) then begin
+            exit(ShipToAdd."Phone No.");
+        end;
+
+
+    end;
+
+    /*
+        local procedure GetBillToPhoneNo(SellToCustNo: Code[20]): Text
+        var
+            ShipToAdd: Record "Ship-to Address";
+
+        begin
+            ShipToAdd.Reset();
+            //ShipToAdd.SetFilter("Customer No.", SellToCustNo);
+            if (ShipToAdd.Get(SellToCustNo)) then begin
+                exit(ShipToAdd."Phone No.");
+            end;
+        end;
+    */
+
+    //Get GLNO
+    procedure GetGLNo(DocNo: Code[20]; LineNo: Integer): Text
+    var
+        SIL: Record "Sales Invoice Line";
+    begin
+        SIL.Reset();
+        SIL.SetFilter("Document No.", DocNo);
+        SIL.SetFilter("Line No.", Format(LineNo));
+        SIL.SetFilter(Type, 'G/L Account');
+        if (SIL.FindFirst()) then begin
+            //Message(Format(SIL."No."));
+            exit(Format(SIL."No."));
+        end
+        else
+            exit('');
+    end;
+
+    /*
+        local procedure GetDONo(No: Code[20]): Text
+        var
+            ValueEntry: Record "Value Entry";
+            ItemLedgerEntry: Record "Item Ledger Entry";
+            //DONumber: Text;
+
+            HighestItem: Text;
+            Lowest: Text;
+            OutputText: Text;
+        begin
+            clear(ValueEntry);
+            ValueEntry.SetRange("Item Ledger Entry Type", "Item Ledger Entry Type"::Sale);
+            ValueEntry.SetRange("Document No.", No);
+            if ValueEntry.FindFirst() then begin
+                repeat
+                    clear(ItemLedgerEntry);
+                    ItemLedgerEntry.SetRange("Entry Type", "Item Ledger Entry Type"::Sale);
+                    ItemLedgerEntry.SetRange("Document Type", "Item Ledger Document Type"::"Sales Shipment");
+                    ItemLedgerEntry.SetRange("Entry No.", ValueEntry."Item Ledger Entry No.");
+                    if (ItemLedgerEntry.FindFirst()) then begin
+
+                        //if (DONumber = '') then
+                            //DONumber := ItemLedgerEntry."Document No." else
+                            //DONumber := DONumber + ',' + ItemLedgerEntry."Document No.";
+
+                        if (Lowest = '') then
+                            Lowest := ItemLedgerEntry."Document No.";
+                        if (Lowest > ItemLedgerEntry."Document No.") then
+                            Lowest := ItemLedgerEntry."Document No.";
+                        if (HighestItem = '') then
+                            HighestItem := ItemLedgerEntry."Document No.";
+                        if (HighestItem < ItemLedgerEntry."Document No.") then
+                            HighestItem := ItemLedgerEntry."Document No.";
+                    end;
+                until ValueEntry.Next = 0;
+            end;
+            //exit(DONumber);
+            if (Lowest = HighestItem) then begin
+                OutputText := Lowest
+            end else
+                OutputText := Lowest + ' ~ ' + HighestItem;
+            exit(OutputText);
+        end;
+    */
+
+    local procedure GetDONoGL(No: Code[20]; SellToCustNo: Code[20]; OrderNo: Code[20]): Text
+    var
+        //For Type = Item
+        ValueEntry: Record "Value Entry";
+        ItemLedgerEntry: Record "Item Ledger Entry";
+        //For Type = G/L Account
+        SalesShipmentLine: Record "Sales Shipment Line";
+
+        //DONumber: Text;
+
+        //For Type = Item
+        HighestItem: Text;
+        LowestItem: Text;
+        //For Type = G/L Account
+        HighestGL: Text;
+        LowestGL: Text;
+
+        //For output
+        HighestText: Text;
+        LowestText: Text;
+        OutputText: Text;
+    begin
+        //Find the range of document no for related sales shipment line for Item type
+        clear(ValueEntry);
+        LowestItem := '';
+        HighestItem := '';
+        ValueEntry.SetRange("Item Ledger Entry Type", "Item Ledger Entry Type"::Sale);
+        ValueEntry.SetRange("Document No.", No);
+        if ValueEntry.FindFirst() then begin
+            repeat
+                clear(ItemLedgerEntry);
+                ItemLedgerEntry.SetRange("Entry Type", "Item Ledger Entry Type"::Sale);
+                ItemLedgerEntry.SetRange("Document Type", "Item Ledger Document Type"::"Sales Shipment");
+                ItemLedgerEntry.SetRange("Entry No.", ValueEntry."Item Ledger Entry No.");
+                if (ItemLedgerEntry.FindFirst()) then begin
+                    /*
+                    if (DONumber = '') then
+                        DONumber := ItemLedgerEntry."Document No." else
+                        DONumber := DONumber + ',' + ItemLedgerEntry."Document No.";
+                    */
+                    if (LowestItem = '') then
+                        LowestItem := ItemLedgerEntry."Document No.";
+                    if (LowestItem > ItemLedgerEntry."Document No.") then
+                        LowestItem := ItemLedgerEntry."Document No.";
+                    if (HighestItem = '') then
+                        HighestItem := ItemLedgerEntry."Document No.";
+                    if (HighestItem < ItemLedgerEntry."Document No.") then
+                        HighestItem := ItemLedgerEntry."Document No.";
+                end;
+            until ValueEntry.Next = 0;
+        end;
+        //Find the range of document no for related sales shipment line for G/L Account type
+        clear(SalesShipmentLine);
+        LowestGL := '';
+        HighestGL := '';
+        SalesShipmentLine.SetFilter("Sell-to Customer No.", SellToCustNo);
+        SalesShipmentLine.SetFilter(Type, 'G/L Account');
+        SalesShipmentLine.Setfilter("Order No.", OrderNo);
+        if (SalesShipmentLine.FindSet()) then begin
+            repeat
+                if (LowestGL = '') then
+                    LowestGL := SalesShipmentLine."Document No.";
+                if (LowestGL > SalesShipmentLine."Document No.") then
+                    LowestGL := SalesShipmentLine."Document No.";
+                if (HighestGL = '') then
+                    HighestGL := SalesShipmentLine."Document No.";
+                if (HighestGL < SalesShipmentLine."Document No.") then
+                    HighestGL := SalesShipmentLine."Document No.";
+            until SalesShipmentLine.Next = 0;
+        end;
+
+        //Setting the document no range
+
+        if (LowestItem = '') and (LowestGL <> '') then
+            LowestText := LowestGL
+        else
+            if (LowestGL = '') and (LowestItem <> '') then
+                LowestText := LowestItem
+            else
+                if (LowestItem < LowestGL) then
+                    LowestText := LowestItem
+                else
+                    LowestText := LowestGL;
+
+        if (HighestItem > HighestGL) then
+            HighestText := HighestItem
+        else
+            HighestText := HighestGL;
+
+        if (LowestText = HighestText) then
+            OutputText := LowestText
+        else
+            OutputText := LowestText + '~' + HighestText;
+
+        exit(OutputText);
+
+        //exit(DONumber);
+    end;
 
     local procedure GetComment(DocNo: Code[20]; LineNo: Integer; STCNo: Code[20]): Text
     var
@@ -326,7 +697,7 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
 
     end;
 
-    local procedure GetTotalGroup(Cond: Integer; SellCustNo: Code[20]; DocNo: Code[20]; LineNo: Integer; ItemGroupNo: Code[20]): Decimal
+    local procedure GetTotalGroup(Cond: Integer; SellCustNo: Code[20]; DocNo: Code[20]; LineNo: Integer; ItemGroupNo: Code[20]; UnitPrice: Decimal): Decimal
     var
         SIL: Record "Sales Invoice Line";
         TLineQty: Decimal;
@@ -338,6 +709,7 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
         SIL.SetFilter("Sell-to Customer No.", SellCustNo);
         SIL.SetFilter("Document No.", DocNo);
         SIL.SetFilter("Item Group No.", ItemGroupNo);
+        SIL.SetFilter("Unit Price", Format(UnitPrice));
         SIL.SetRange("Line No.");
         if (SIL.FindSet()) and (Cond = 1) then begin
             repeat
@@ -366,6 +738,135 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
         end;
     end;
 
+    local procedure GetTotalGroup(Cond: Integer; SellToCustNo: Code[20]; DocNo: Code[20]; LineNo: Integer; GLNo: Code[20]; ItemGroupNo: Code[20]; UnitPrice: Decimal): Decimal
+    var
+        SIL: Record "Sales Invoice Line";
+        TLineQty: Decimal;
+        TLineUP: Decimal;
+        TLineDisc: Decimal;
+        TLineAmount: Decimal;
+    begin
+        SIL.Reset();
+        SIL.SetFilter("Sell-to Customer No.", SellToCustNo);
+        SIL.SetFilter("Document No.", DocNo);
+        SIL.SetFilter(Type, 'G/L Account');
+        SIL.SetFilter("No.", GLNo);
+        SIL.SetFilter("Item Group No.", ItemGroupNo);
+        SIL.SetFilter("Unit Price", Format(UnitPrice));
+        SIL.SetRange("Line No.");
+        if (SIL.FindSet()) and (Cond = 1) then begin
+            repeat
+                TLineQty += SIL.Quantity;
+            until (SIL.Next = 0);
+            exit(TLineQty);
+        end;
+        if (SIL.FindSet()) and (Cond = 2) then begin
+            repeat
+                //TLineUP += SIL."Unit Price";
+                TLineUP := SIL."Unit Price";
+            until (SIL.Next = 0);
+            exit(TLineUP);
+        end;
+        if (SIL.FindSet()) and (Cond = 3) then begin
+            repeat
+                TLineDisc += SIL."Line Discount Amount";
+            until (SIL.Next = 0);
+            exit(TLineDisc);
+        end;
+        if (SIL.FindSet()) and (Cond = 4) then begin
+            repeat
+                TLineAmount += SIL.Amount;
+            until (SIL.Next = 0);
+            exit(TLineAmount);
+        end;
+    end;
+
+
+    /*
+        local procedure GetTotalGroup(Cond: Integer; SellCustNo: Code[20]; DocNo: Code[20]; LineNo: Integer; GLNo: Code[20]; ItemGroupNo: Code[20]; UnitPrice: Decimal): Decimal
+        var
+            SIL: Record "Sales Invoice Line";
+            TLineQty: Decimal;
+            TLineUP: Decimal;
+            TLineDisc: Decimal;
+            TLineAmount: Decimal;
+        begin
+            SIL.Reset();
+            SIL.SetFilter("Sell-to Customer No.", SellCustNo);
+            SIL.SetFilter("Document No.", DocNo);
+            SIL.SetFilter("No.", GLNo);
+            SIL.SetFilter("Item Group No.", ItemGroupNo);
+            SIL.SetFilter("Unit Price", Format(UnitPrice));
+            SIL.SetRange("Line No.");
+            if (SIL.FindSet()) and (Cond = 1) then begin
+                repeat
+                    TLineQty += SIL.Quantity;
+                until (SIL.Next = 0);
+                exit(TLineQty);
+            end;
+            if (SIL.FindSet()) and (Cond = 2) then begin
+                repeat
+                    //TLineUP += SIL."Unit Price";
+                    TLineUP := SIL."Unit Price";
+                until (SIL.Next = 0);
+                exit(TLineUP);
+            end;
+            if (SIL.FindSet()) and (Cond = 3) then begin
+                repeat
+                    TLineDisc += SIL."Line Discount Amount";
+                until (SIL.Next = 0);
+                exit(TLineDisc);
+            end;
+            if (SIL.FindSet()) and (Cond = 4) then begin
+                repeat
+                    TLineAmount += SIL.Amount;
+                until (SIL.Next = 0);
+                exit(TLineAmount);
+            end;
+        end;
+
+        */
+    /*
+        local procedure GetTotalGroup(Cond: Integer; SellCustNo: Code[20]; DocNo: Code[20]; LineNo: Integer; ItemGroupNo: Code[20]): Decimal
+        var
+            SIL: Record "Sales Invoice Line";
+            TLineQty: Decimal;
+            TLineUP: Decimal;
+            TLineDisc: Decimal;
+            TLineAmount: Decimal;
+        begin
+            SIL.Reset();
+            SIL.SetFilter("Sell-to Customer No.", SellCustNo);
+            SIL.SetFilter("Document No.", DocNo);
+            SIL.SetFilter("Item Group No.", ItemGroupNo);
+            SIL.SetRange("Line No.");
+            if (SIL.FindSet()) and (Cond = 1) then begin
+                repeat
+                    TLineQty += SIL.Quantity;
+                until (SIL.Next = 0);
+                exit(TLineQty);
+            end;
+            if (SIL.FindSet()) and (Cond = 2) then begin
+                repeat
+                    //TLineUP += SIL."Unit Price";
+                    TLineUP := SIL."Unit Price";
+                until (SIL.Next = 0);
+                exit(TLineUP);
+            end;
+            if (SIL.FindSet()) and (Cond = 3) then begin
+                repeat
+                    TLineDisc += SIL."Line Discount Amount";
+                until (SIL.Next = 0);
+                exit(TLineDisc);
+            end;
+            if (SIL.FindSet()) and (Cond = 4) then begin
+                repeat
+                    TLineAmount += SIL.Amount;
+                until (SIL.Next = 0);
+                exit(TLineAmount);
+            end;
+        end;
+    */
     local procedure GetFixedNote(): Text
     var
         returnText: Text[500];
@@ -398,9 +899,19 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
         //Set whether to print line or skip (may be redudant with skip())
         PrintLine: Boolean;
         DescriptionLine: Text[100];
+
+        //For comparing and filtering line
         OldGroupNo, NewGroupNo : Code[20];
+        OldNo, NewNo : Code[20];
+        OldUP, NewUP : Decimal;
+
+
         LineNo: Code[20];
         //Total of line based of item group no.
         TLineQty, TLineUP, TLineDisc, TLineAmount : Decimal;
+        //Phone No
+        ShiptoPhoneNo, BilltoPhoneNo : Text[30];
+        DO_NO_: Text[100];
+
 
 }
