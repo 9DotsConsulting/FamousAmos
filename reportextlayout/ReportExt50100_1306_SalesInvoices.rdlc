@@ -6140,6 +6140,9 @@ hlsabBYXzGbcMhYWwmtd+DzSd0lFizPcgvusjxSF70vP+f13Un3Fd5q+R28EY9I4s3B5xKh8/6ZXLlw/
         <Field Name="Ship_to_Post_Code">
           <DataField>Ship_to_Post_Code</DataField>
         </Field>
+        <Field Name="Ship_to_Phone_No_">
+          <DataField>Ship_to_Phone_No_</DataField>
+        </Field>
         <Field Name="Date">
           <DataField>Date</DataField>
         </Field>
@@ -6157,6 +6160,9 @@ hlsabBYXzGbcMhYWwmtd+DzSd0lFizPcgvusjxSF70vP+f13Un3Fd5q+R28EY9I4s3B5xKh8/6ZXLlw/
         </Field>
         <Field Name="Salesperson_Code">
           <DataField>Salesperson_Code</DataField>
+        </Field>
+        <Field Name="Order_No_">
+          <DataField>Order_No_</DataField>
         </Field>
         <Field Name="Deliver_On">
           <DataField>Deliver_On</DataField>

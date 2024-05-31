@@ -2,14 +2,20 @@ pageextension 50011 "DOT Cash Receipt Journals" extends "Cash Receipt Journal"
 {
     layout
     {
-        addafter("Applies-to Doc. No.")
+        // addafter("Applies-to Doc. No.")
+        // {
+        //     field("Payment Method Code"; Rec."Payment Method Code")
+        //     {
+        //         ApplicationArea = All;
+        //         Visible = true;
+        //     }
+        // }
+        modify("Payment Method Code")
         {
-            field("Payment Method Code"; Rec."Payment Method Code")
-            {
-                ApplicationArea = All;
-                Visible = true;
-            }
+            ApplicationArea = All;
+            Visible = true;
         }
+
     }
 
     actions
