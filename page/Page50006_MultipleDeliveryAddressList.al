@@ -1,4 +1,4 @@
-namespace Microsoft.Sales.Customer;
+// namespace Microsoft.Sales.Customer;
 
 page 50006 "Multiple Delivery Address List"
 {

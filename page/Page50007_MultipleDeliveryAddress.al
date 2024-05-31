@@ -1,6 +1,6 @@
-namespace Microsoft.Sales.Customer;
+// namespace Microsoft.Sales.Customer;
 
-using Microsoft.Foundation.Address;
+// using Microsoft.Foundation.Address;
 
 page 50007 "Multiple Delivery Address"
 {

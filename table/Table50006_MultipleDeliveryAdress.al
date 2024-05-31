@@ -1,13 +1,13 @@
-namespace Microsoft.Sales.Customer;
+// namespace Microsoft.Sales.Customer;
 
-using Microsoft.EServices.OnlineMap;
-using Microsoft.Finance.SalesTax;
-using Microsoft.Foundation.Address;
-using Microsoft.Foundation.Shipping;
-using Microsoft.Inventory.Location;
-using Microsoft.Service.Setup;
-using Microsoft.Utilities;
-using System.Email;
+// using Microsoft.EServices.OnlineMap;
+// using Microsoft.Finance.SalesTax;
+// using Microsoft.Foundation.Address;
+// using Microsoft.Foundation.Shipping;
+// using Microsoft.Inventory.Location;
+// using Microsoft.Service.Setup;
+// using Microsoft.Utilities;
+// using System.Email;
 
 table 50006 "Multiple Delivery Address"
 {
