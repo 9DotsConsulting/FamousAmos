@@ -40,5 +40,11 @@ tableextension 50003 SalesLine extends "Sales Line"
             Caption = 'Delivery Address';
             TableRelation = "Multiple Delivery Address".Name where("Customer No." = field("Sell-to Customer No."));
         }
+        field(50003; "Shipment-Order No."; Code[20])
+        {
+            //please do not remove - note from Clarissa
+            //this is to get the comment line from sales order (posted sales shipment), because if get from posted sales shipment 
+            //the commentLine.DocumentNo will be incorrect as user may select more than 1 shipment no and it can lead to missing comment
+        }
     }
 }

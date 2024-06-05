@@ -667,7 +667,6 @@
                                               <PaddingRight>5pt</PaddingRight>
                                             </Style>
                                           </Textbox>
-                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -1850,9 +1849,6 @@
                               <Left>0.00005cm</Left>
                               <Height>4.76248cm</Height>
                               <Width>18.13624cm</Width>
-                              <Visibility>
-                                <Hidden>=IIF(Fields!LineNo_SalesShptLine.Value &lt;&gt; 0,False,True)</Hidden>
-                              </Visibility>
                               <DataElementOutput>NoOutput</DataElementOutput>
                               <Style>
                                 <Border>
@@ -3110,6 +3106,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                   </Style>
                 </Textbox>
                 <Textbox Name="BuyFromAddr51">
+                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -3135,6 +3132,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                   </Style>
                 </Textbox>
                 <Textbox Name="BuyFromAddr41">
+                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -3160,6 +3158,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                   </Style>
                 </Textbox>
                 <Textbox Name="BuyFromAddr31">
+                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -3185,6 +3184,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                   </Style>
                 </Textbox>
                 <Textbox Name="BuyFromAddr21">
+                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
@@ -3210,6 +3210,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                   </Style>
                 </Textbox>
                 <Textbox Name="BuyFromAddr11">
+                  <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
