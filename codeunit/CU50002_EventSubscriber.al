@@ -1,7 +1,8 @@
 codeunit 50002 "DOT Subscribers"
 {
     Permissions = tabledata "Sales Shipment Header" = rmid,
-                    tabledata "Sales Shipment Line" = rmid;
+                    tabledata "Sales Shipment Line" = rmid,
+                    tabledata "Sales Line" = rmid;
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post (Yes/No)", OnBeforeRunSalesPost, '', false, false)]
     local procedure "Sales-Post (Yes/No)_OnBeforeRunSalesPost"(var SalesHeader: Record "Sales Header"; var IsHandled: Boolean; var SuppressCommit: Boolean)
@@ -18,14 +19,15 @@ codeunit 50002 "DOT Subscribers"
         SHAddress := SalesHeader."Sell-to Customer Name";
         DuplicatesFilter := '';
         Description := '';
-
+        ok := false;
         if SalesHeader."Document Type" = "Sales Document Type"::Order then begin
             SalesLine.SetRange("Document No.", SalesHeader."No.");
             if SalesLine.Count < 1 then begin
                 exit;
             end;
-
-            if SalesHeader."No. Series" = 'SO-CORP' then begin
+            SO := SalesHeader."No.";
+            ok := SO.Contains('SO-CORP');
+            if ok then begin //SalesHeader."No. Series" = 'SO-CORP' then begin
                 // Need to add additional handling such as posting Ship + Invoice and Invoice
                 IsHandled := true; //else (CORP) use multiple posting
                                    // Loop 3 times, but you will need to find and calculate how many different Shipping Address
@@ -68,13 +70,15 @@ codeunit 50002 "DOT Subscribers"
         SalesShptLine: Record "Sales Shipment Line";
         SalesShptHeader: record "Sales Shipment Header";
     begin
-
+        ok := false;
         if SalesHeader."Document Type" = "Sales Document Type"::Order then begin
             SalesLine.SetRange("Document No.", SalesHeader."No.");
             if SalesLine.Count < 1 then begin
                 exit;
             end;
-            if SalesHeader."No. Series" = 'SO-CORP' then begin
+            SO := SalesHeader."No.";
+            ok := SO.Contains('SO-CORP');
+            if ok then begin //SalesHeader."No. Series" = 'SO-CORP' then begin
                 // TempSalesLine is to copy from SalesLine record
                 TempSalesLine.SetRange("Document Type", SalesLine."Document Type");
                 TempSalesLine.SetRange("Document No.", SalesLine."Document No.");
@@ -99,7 +103,9 @@ codeunit 50002 "DOT Subscribers"
             end else
                 exit;
         end else if SalesHeader."Document Type" = "Sales Document Type"::Invoice then begin
-            if SalesHeader."Posting No. Series" = 'S-INV' then begin
+            SI := SalesHeader."No.";
+            ok := SI.Contains('S-INV');
+            if ok then begin//SalesHeader."Posting No. Series" = 'S-INV' then begin
                 exit;
             end else begin
                 SalesLine.SetFilter("Shipment No.", '<>%1', '');
@@ -148,13 +154,16 @@ codeunit 50002 "DOT Subscribers"
         MultiAddress: record "Multiple Delivery Address";
         SalesShptLine: record "Sales Shipment Line";
     begin
+        ok := false;
         if SalesHeader."Document Type" = "Sales Document Type"::Order then begin
             SalesShptLine.SetRange("Document No.", SalesShipmentHeader."No.");
             if SalesShptLine.Count < 1 then begin
                 exit;
             end;
 
-            if SalesHeader."No. Series" = 'SO-CORP' then begin
+            SO := SalesHeader."No.";
+            ok := SO.Contains('SO-CORP');
+            if ok then begin //SalesHeader."No. Series" = 'SO-CORP' then begin
                 TempSalesLineGlobal.SetFilter("Qty. to Ship", '<>%1', 0);
                 TempSalesLineGlobal.FindFirst();
                 MultiAddress.SetRange(Name, TempSalesLineGlobal."Delivery Address");
@@ -162,6 +171,10 @@ codeunit 50002 "DOT Subscribers"
                 SalesShipmentHeader."Ship-to Name" := TempSalesLineGlobal."Delivery address";
                 SalesShipmentHeader."Ship-to Code" := MultiAddress.Code;
                 SalesShipmentHeader."Ship-to Address" := MultiAddress.Address;
+                SalesShipmentHeader."Ship-to City" := MultiAddress.City;
+                SalesShipmentHeader."Ship-to Contact" := MultiAddress.Contact;
+                SalesShipmentHeader."Ship-to Post Code" := MultiAddress."Post Code";
+                SalesShipmentHeader."Ship-to Country/Region Code" := MultiAddress."Country/Region Code";
                 SalesShipmentHeader.Modify();
 
                 SalesShptLine.SetRange("Document No.", SalesShipmentHeader."No.");
@@ -192,6 +205,33 @@ codeunit 50002 "DOT Subscribers"
             exit;
     end;
 
+    [EventSubscriber(ObjectType::CodeUnit, Codeunit::"Sales-Get Shipment", OnAfterInsertLine, '', false, false)]
+    local procedure GetShipment_OnAfterInsertLine(var SalesShptLine: Record "Sales Shipment Line"; var SalesLine: Record "Sales Line"; SalesShptLine2: Record "Sales Shipment Line"; TransferLine: Boolean; var SalesHeader: Record "Sales Header")
+    var
+        Commentline, CommentLine2 : record "Sales Comment Line";
+        SalesLine2: Record "Sales Line";
+    begin
+        SalesShipmentHeader.SetRange("No.", SalesShptLine2."Document No.");
+        if SalesShipmentHeader.findfirst then begin
+            //repeat
+            SalesLine."Shipment-Order No." := SalesShipmentHeader."Order No.";
+            SalesLine.Modify();
+        end;
+        CommentLine.reset;
+        SalesLine2.reset;
+        //sales order get sales invoice
+        SalesLine2.SetRange("Document No.", SalesLine."Shipment-Order No.");
+        SalesLine2.SetRange("Item Group No.", SalesLine."Item Group No.");
+        SalesLine2.SetFilter("Document Type", 'Order');
+        if salesline2.findset then begin
+            CommentLine.SetRange("No.", SalesLine2."Document No.");
+            Commentline.SetRange("Document Type", SalesLine2."Document Type");
+            Commentline.SetRange("Document Line No.", SalesLine2."Line No.");
+            if CommentLine.findfirst then
+                //CommentLine.CopyLineCommentsFromSalesLines(SalesLine2."Document Type", SalesLine."Document Type", SalesLine2."Shipment-Order No.", SalesLine."Document No.", SalesLine2);
+                CommentLine2.CopyLineComments(Commentline."Document Type", SalesLine."Document Type", Commentline."No.", SalesLine."Document No.", Commentline."Document Line No.", SalesLine."Line No.");
+        end;
+    end;
 
     var
         SalesPost: Codeunit "Sales-Post";
