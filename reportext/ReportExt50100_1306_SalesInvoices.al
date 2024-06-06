@@ -76,7 +76,9 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
 
             //Field 12: Delivery Order No (Your Reference) - Temporary link for Phase 1
             //column(Delivery_Order_No; "Your Reference") { }
-            column(Delivery_Order_No; DO_NO_) { }
+            //column(Delivery_Order_No; DO_NO_) { } //comment out by Clarissa
+
+            column(Delivery_Order_No; Delivery_Order_No) { }
 
             //Field 13: Terms (Payment Terms code)
             column(Payment_Terms_Code; "Payment Terms Code") { }
@@ -88,7 +90,7 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
 
 
             //Field 16: Order Date (Document Date)
-            column(Order_Date; "Document Date") { }
+            column(Order_Date; Order_Date) { }
 
             //Field 17: Sales Person Code: (Salesperson Code)
             column(Salesperson_Code; "Salesperson Code") { }
@@ -104,6 +106,8 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             //column(Note; Note) { }
             column(Note; GetFixedNote()) { }
             //column(CompBankAcc; CI."Bank Account No.") { }
+            column(ContactName; "Sell-to Contact") { }
+            column(PhoneNo; "Sell-to Phone No.") { }
 
         }
         add(Line)
@@ -154,17 +158,37 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             //Field 27.5: Total Incl. GST
 
             column(PrintLine; PrintLine) { }
-
         }
         modify(header)
         {
             trigger OnAfterAfterGetRecord()
+            var
+                SIL: Record "Sales Invoice Line";
+                SH: Record "Sales Header";
+                ShipmentNo: code[20];
             begin
                 if ("Currency Code" = '') then
                     Curr_Code := 'SGD';
 
                 ShiptoPhoneNo := GetShipToPhoneNo("Sell-to Customer No.");
-                DO_NO_ := GetDONoGL("No.", "Sell-to Customer No.", "Order No.");
+                //DO_NO_ := GetDONoGL("No.", "Sell-to Customer No.", "Order No.");
+
+                SIL.reset;
+                SIL.SetRange("Document No.", Header."No.");
+                if SIL.findfirst then
+                    //repeat
+                        ShipmentNo := SIL."Shipment No.";
+                //until SIL.next = 0;
+                if SIL.findlast then
+                    Delivery_Order_No := ShipmentNo + '~' + SIL."Shipment No."
+                else
+                    Delivery_Order_No := ShipmentNo;
+
+                SH.reset;
+                SH.SetRange("No.", Header."Order No.");
+                if SH.findfirst then
+                    Order_Date := SH."Order Date";
+
             end;
         }
 
@@ -175,7 +199,6 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             var
             //EnumType: Enum "Sales Line Type";
             begin
-
                 /*
                 currentLine := Line;
                 if "Line No." < CountNo then
@@ -891,6 +914,7 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
 
     var
         CI: Record "Company Information";
+        Customer: Record Customer;
         RunningNo: Integer;
         CountNo: Integer;
         currentLine: record "Sales Invoice Line";
@@ -898,12 +922,13 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
         Curr_Code: Code[10];
         //Set whether to print line or skip (may be redudant with skip())
         PrintLine: Boolean;
-        DescriptionLine: Text[100];
+        DescriptionLine, Delivery_Order_No, ContactName, PhoneNo : Text[100];
 
         //For comparing and filtering line
         OldGroupNo, NewGroupNo : Code[20];
         OldNo, NewNo : Code[20];
         OldUP, NewUP : Decimal;
+        Order_Date: Date;
 
 
         LineNo: Code[20];
