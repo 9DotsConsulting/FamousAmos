@@ -66,7 +66,7 @@ codeunit 50002 "DOT Subscribers"
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", OnBeforePostLines, '', false, false)]
     local procedure "Sales-Post_OnBeforePostLines"(var SalesLine: Record "Sales Line"; SalesHeader: Record "Sales Header"; CommitIsSuppressed: Boolean; PreviewMode: Boolean; var TempWhseShptHeader: Record "Warehouse Shipment Header" temporary)
     var
-        TempSalesLine, NextSalesLine : Record "Sales Line";
+        TempSalesLine, NextSalesLine, lrSalesLine : Record "Sales Line";
         SalesShptLine: Record "Sales Shipment Line";
         SalesShptHeader: record "Sales Shipment Header";
     begin
@@ -108,19 +108,28 @@ codeunit 50002 "DOT Subscribers"
             if ok then begin//SalesHeader."Posting No. Series" = 'S-INV' then begin
                 exit;
             end else begin
-                SalesLine.SetFilter("Shipment No.", '<>%1', '');
-                SalesLine.SetFilter("Qty. to Invoice", '<>%1', 0);
-                if SalesLine.FindSet() then begin
+                lrSalesLine.SetRange("Document No.", SalesLine."Document No.");
+                lrSalesLine.SetRange("Shipment No.", SalesLine."Shipment No.");
+                //lrSalesLine.SetFilter("Shipment No.", '<>%1', '');
+                //lrSalesLine.SetFilter("Qty. to Invoice", '>%1', 0);
+                if lrSalesLine.FindSet() then //begin
                     repeat
-                        SalesShptHeader.SetRange("No.", SalesLine."Shipment No.");
-                        SalesShptHeader.findset;
-                        SalesShptHeader."Ship-to Code" := '';
-                        SalesShptHeader.modify;
-                    until SalesLine.next = 0;
-                end;
+                        if lrSalesLine."Qty. to Invoice" > 0 then begin
+                            SalesLine.SetRange("Document No.", lrSalesLine."Document No.");
+                            SalesLine.SetFilter("Shipment No.", '<>%1', '');
+                            SalesLine.SetFilter("Qty. to Invoice", '>%1', 0);
+                            if SalesLine.FindSet() then begin
+                                repeat
+                                    SalesShptHeader.SetRange("No.", SalesLine."Shipment No.");
+                                    SalesShptHeader.findset;
+                                    SalesShptHeader."Ship-to Code" := '';
+                                    SalesShptHeader.modify;
+                                until SalesLine.next = 0;
+                            end;
+                        end else if (lrSalesLine."Qty. to Invoice" < 0) OR (lrSalesLine."Shipment No." = '') then exit;
+                    until lrSalesLine.Next() = 0;
             end;
-        end else
-            exit;
+        end;
 
         //notes : // If TempSalesLine and NextSalesLine has different data, then filter SalesLine
         //if TempSalesLine."Shortcut Dimension 1 Code" <> NextSalesLine."Shortcut Dimension 1 Code" then begin
