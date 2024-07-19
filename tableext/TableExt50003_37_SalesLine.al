@@ -46,5 +46,10 @@ tableextension 50003 SalesLine extends "Sales Line"
             //this is to get the comment line from sales order (posted sales shipment), because if get from posted sales shipment 
             //the commentLine.DocumentNo will be incorrect as user may select more than 1 shipment no and it can lead to missing comment
         }
+
+        field(50100; "Set Indicator"; Code[5])
+        {
+            Caption = 'Set Indicator';
+        }
     }
 }

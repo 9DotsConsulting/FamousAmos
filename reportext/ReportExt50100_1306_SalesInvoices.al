@@ -1,3 +1,4 @@
+
 reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
 {
     //For posted sales invoice
@@ -158,6 +159,23 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             //Field 27.5: Total Incl. GST
 
             column(PrintLine; PrintLine) { }
+        }
+        addbefore(Totals)
+        {
+            dataitem(SetIndicator; "Sales Invoice Line")
+            {
+                DataItemLink = "Document No." = field("No.");
+                DataItemLinkReference = Header;
+                DataItemTableView = sorting("Document No.", "Line No.");
+                //DataItemTableView = sorting("Line No.");
+                UseTemporary = true;
+
+                column(Set_Indicator; "Set Indicator") { }
+                column(Unit_Price; "Unit Price") { }
+                column(Qty; Quantity) { }
+                //column(TotalPerSet;) { }
+
+            }
         }
         modify(header)
         {
@@ -416,6 +434,9 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
                     end;
                     */
 
+                //Test
+                //FindGroupSet("Sell-to Customer No.", "No.", "Line No.", GetGLNo("Document No.", "Line No."));
+                //FindGroupSet("Sell-to Customer No.", "Document No.", "Line No.", GetGLNo("Document No.", "Line No."));
 
                 //Set the current line value
                 //NewNo := "No.";
@@ -487,6 +508,134 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             //LayoutFile = './reportextlayout/ReportExt50100_1306_SalesInvoices.docx';
         }
     }
+
+    local procedure FindGroupSet(SellCustNo: Code[20]; DocNo: Code[20]; LineNo: Integer; GLNo: Text)
+    var
+        SIH: Record "Sales Invoice Header";
+        SIL: Record "Sales Invoice Line";
+
+
+        //For comparing and filtering line
+        OldGroupNo, NewGroupNo : Code[20];
+        OldNo, NewNo : Code[20];
+        OldUP, NewUP : Decimal;
+
+        testText: Text;
+        CR, LF : Char;
+
+        Counter: Integer;
+
+    begin
+        Counter := 0;
+        CR := 13;
+        LF := 10;
+        //DocNo is from Header."No."
+        SIL.SetFilter("Sell-to Customer No.", SellCustNo);
+        SIL.SetFilter("Document No.", DocNo);
+        //SIL.SetFilter("Line No.", Format(LineNo));
+        SIL.SetFilter(Type, 'G/L Account');
+        //SIL.SetFilter("No.", GLNo);
+        SIL.SetRange("Line No.");
+        if SIL.FindSet() then begin
+            repeat
+                //Message('Item Group No: %1, Unit Price: %2, Quantity: %3', SIL."Item Group No.", SIL."Unit Price", SIL.Quantity);
+                if SIL."Item Group No." <> '' then
+                    testText := testText + StrSubstNo('Sell-to Cust No: %1, Document No: %2, Item Group No: %3, Unit Price: %4, Quantity: %5', SIL."Sell-to Customer No.", SIL."Document No.", SIL."Item Group No.", SIL."Unit Price", SIL.Quantity) + CR + LF;
+            until SIL.Next() = 0;
+            //Message(testText);
+        end;
+
+        testText := '';
+
+        SIL.Reset();
+        SIL.SetFilter("Sell-to Customer No.", SellCustNo);
+        SIL.SetFilter("Document No.", DocNo);
+        //SIL.SetFilter("Line No.", Format(LineNo));
+        SIL.SetFilter(Type, 'G/L Account');
+        //SIL.SetFilter("No.", GLNo);
+        SIL.SetRange("Line No.");
+        if SIL.FindSet() then begin
+            repeat
+                if SIL."Item Group No." <> '' then begin
+                    NewGroupNo := SIL."Item Group No.";
+                    NewUP := SIL."Unit Price";
+                    if (NewGroupNo <> OldGroupNo) and (NewUP <> OldUP) then begin
+                        testText := testText + StrSubstNo('Item Group No: %1, Unit Price: %2, Quantity: %3', SIL."Item Group No.", SIL."Unit Price", SIL.Quantity) + CR + LF;
+                        OldGroupNo := NewGroupNo;
+                        OldUP := NewUP;
+                    end;
+                end;
+            until SIL.Next() = 0;
+            //Message(testText);
+        end;
+
+        testText := '';
+
+        SIL.Reset();
+        SIL.SetFilter("Sell-to Customer No.", SellCustNo);
+        SIL.SetFilter("Document No.", DocNo);
+        //SIL.SetFilter("Line No.", Format(LineNo));
+        SIL.SetFilter(Type, 'G/L Account');
+        //SIL.SetFilter("No.", GLNo);
+        SIL.SetRange("Line No.");
+        if SIL.FindSet() then begin
+            repeat
+                if SIL."Item Group No." <> '' then begin
+                    NewGroupNo := SIL."Item Group No.";
+                    NewUP := SIL."Unit Price";
+                    if SIL.Type.AsInteger() = 1 then begin
+                        if (NewGroupNo <> OldGroupNo) and (NewUP <> OldUP) then begin
+                            //testText := testText + StrSubstNo('Item Group No: %1, Unit Price: %2, Quantity: %3', SIL."Item Group No.", SIL."Unit Price", SIL.Quantity) + CR + LF;
+                            Counter += 1;
+                            testText := testText + 'Set No.: ' + Format(Counter) + CR + LF;
+                            testText := testText + 'Line Comment: ' + GetComment(SIL."Document No.", SIL."Line No.", SIL."Sell-to Customer No.") + CR + LF;
+                            testText := testText + 'Total Line Quantity: ' + Format(GetTotalGroup(1, SIL."Sell-to Customer No.", SIL."Document No.", SIL."Line No.", NewGroupNo, NewUP)) + CR + LF;
+                            testText := testText + 'Total Line Unit Price: ' + Format(GetTotalGroup(2, SIL."Sell-to Customer No.", SIL."Document No.", SIL."Line No.", NewGroupNo, NewUP)) + CR + LF;
+                            testText := testText + 'Total Line Discount: ' + Format(GetTotalGroup(3, SIL."Sell-to Customer No.", SIL."Document No.", SIL."Line No.", NewGroupNo, NewUP)) + CR + LF;
+                            testText := testText + 'Total Line Amount: ' + Format(GetTotalGroup(4, SIL."Sell-to Customer No.", SIL."Document No.", SIL."Line No.", NewGroupNo, NewUP)) + CR + LF;
+                            // CommentLine := GetComment("Document No.", "Line No.", "Sell-to Customer No.");
+                            // TLineQty := GetTotalGroup(1, "Sell-to Customer No.", "Document No.", "Line No.", NewNo, "Item Group No.", "Unit Price");
+                            // TLineUP := GetTotalGroup(2, "Sell-to Customer No.", "Document No.", "Line No.", NewNo, "Item Group No.", "Unit Price");
+                            // TLineDisc := GetTotalGroup(3, "Sell-to Customer No.", "Document No.", "Line No.", NewNo, "Item Group No.", "Unit Price");
+                            // TLineAmount := GetTotalGroup(4, "Sell-to Customer No.", "Document No.", "Line No.", NewNo, "Item Group No.", "Unit Price");
+
+                            OldGroupNo := NewGroupNo;
+                            OldUP := NewUP;
+                        end
+                        else if (NewGroupNo <> OldGroupNo) and (NewUP = OldUP) then begin
+
+                            Counter += 1;
+                            testText := testText + 'Set No.: ' + Format(Counter) + CR + LF;
+                            testText := testText + 'Line Comment: ' + GetComment(SIL."Document No.", SIL."Line No.", SIL."Sell-to Customer No.") + CR + LF;
+                            testText := testText + 'Total Line Quantity: ' + Format(GetTotalGroup(1, SIL."Sell-to Customer No.", SIL."Document No.", SIL."Line No.", NewGroupNo, NewUP)) + CR + LF;
+                            testText := testText + 'Total Line Unit Price: ' + Format(GetTotalGroup(2, SIL."Sell-to Customer No.", SIL."Document No.", SIL."Line No.", NewGroupNo, NewUP)) + CR + LF;
+                            testText := testText + 'Total Line Discount: ' + Format(GetTotalGroup(3, SIL."Sell-to Customer No.", SIL."Document No.", SIL."Line No.", NewGroupNo, NewUP)) + CR + LF;
+                            testText := testText + 'Total Line Amount: ' + Format(GetTotalGroup(4, SIL."Sell-to Customer No.", SIL."Document No.", SIL."Line No.", NewGroupNo, NewUP)) + CR + LF;
+
+                            OldGroupNo := NewGroupNo;
+                            OldUP := NewUP;
+                        end
+                        else if (NewGroupNo = OldGroupNo) and (NewUP <> OldUP) then begin
+
+                            Counter += 1;
+                            testText := testText + 'Set No.: ' + Format(Counter) + CR + LF;
+                            testText := testText + 'Line Comment: ' + GetComment(SIL."Document No.", SIL."Line No.", SIL."Sell-to Customer No.") + CR + LF;
+                            testText := testText + 'Total Line Quantity: ' + Format(GetTotalGroup(1, SIL."Sell-to Customer No.", SIL."Document No.", SIL."Line No.", NewGroupNo, NewUP)) + CR + LF;
+                            testText := testText + 'Total Line Unit Price: ' + Format(GetTotalGroup(2, SIL."Sell-to Customer No.", SIL."Document No.", SIL."Line No.", NewGroupNo, NewUP)) + CR + LF;
+                            testText := testText + 'Total Line Discount: ' + Format(GetTotalGroup(3, SIL."Sell-to Customer No.", SIL."Document No.", SIL."Line No.", NewGroupNo, NewUP)) + CR + LF;
+                            testText := testText + 'Total Line Amount: ' + Format(GetTotalGroup(4, SIL."Sell-to Customer No.", SIL."Document No.", SIL."Line No.", NewGroupNo, NewUP)) + CR + LF;
+
+                            OldGroupNo := NewGroupNo;
+                            OldUP := NewUP;
+                        end;
+                    end;
+
+                end;
+            until SIL.Next() = 0;
+            Message(testText);
+        end;
+    end;
+
 
     local procedure GetShipToPhoneNo(SellToCustNo: Code[20]): Text
     var

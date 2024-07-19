@@ -7,6 +7,7 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>b23244e3-9790-4712-be0f-6041ac5f0e69</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -3261,6 +3262,8 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <RepeatColumnHeaders>true</RepeatColumnHeaders>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
             <Top>0.03066cm</Top>
             <Left>0.02215cm</Left>
             <Height>8.68807cm</Height>
@@ -6305,6 +6308,21 @@ ME9fukVgj4O+Bz/zBj/4Fzf/ABdFFNVJLRMpVJx0TL+ifDfwv4e1Jb/SdNMF0gKq/wBolfAPXhmI/Sup
         </Field>
         <Field Name="PrintLine">
           <DataField>PrintLine</DataField>
+        </Field>
+        <Field Name="Set_Indicator">
+          <DataField>Set_Indicator</DataField>
+        </Field>
+        <Field Name="Unit_Price">
+          <DataField>Unit_Price</DataField>
+        </Field>
+        <Field Name="Unit_PriceFormat">
+          <DataField>Unit_PriceFormat</DataField>
+        </Field>
+        <Field Name="Qty">
+          <DataField>Qty</DataField>
+        </Field>
+        <Field Name="QtyFormat">
+          <DataField>QtyFormat</DataField>
         </Field>
       </Fields>
       <Query>

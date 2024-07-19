@@ -7,5 +7,10 @@ tableextension 50005 SalesInvoiceLine extends "Sales Invoice Line"
             Caption = 'Item Group No.';
             //DataClassification = ToBeClassified;
         }
+
+        field(50100; "Set Indicator"; Code[5])
+        {
+            Caption = 'Set Indicator';
+        }
     }
 }
