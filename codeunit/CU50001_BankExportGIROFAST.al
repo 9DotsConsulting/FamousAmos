@@ -340,6 +340,12 @@ codeunit 50001 BankExportGIROFAST
                             g_txtFile := g_txtFile + grec_GenJournalLine.Description;
                         */
 
+                        //#8 Beneficiary email (Vendor)
+
+                        g_txtFile := g_txtFile + '%%';
+
+                        g_txtFile := g_txtFile + cutExtraText(grec_Vendor."E-Mail", 80) + '%';
+
                         OutStr.WriteText(g_txtFile + CR + LF);
                     //----------------Detailed Payment records end--------------//
 
@@ -480,8 +486,8 @@ codeunit 50001 BankExportGIROFAST
         end
         else
             if ((Input - Round(Input, 1, '<')) = 0) then begin
-                //ReturnText := Format(Input) + '.00';
-                ReturnText := Format(Input);
+                ReturnText := Format(Input) + '.00';
+                //ReturnText := Format(Input);
                 ReturnText := DelChr(Format(ReturnText), '=', ',');
                 exit(ReturnText);
             end;
