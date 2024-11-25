@@ -41,7 +41,7 @@ reportextension 50006 PrintedPickList_TO extends "Transfer Order"
         {
             Type = RDLC;
             //Type = Word;
-            LayoutFile = './reportextlayout/ReportExt50004_5703_PrintedPickList.rdlc';
+            LayoutFile = './reportextlayout/ReportExt50006_5703_PrintedPickList.rdlc';
             //LayoutFile = './reportextlayout/ReportExt50004_5703_PrintedPickList.rdlc';
         }
     }
