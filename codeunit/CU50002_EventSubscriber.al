@@ -69,6 +69,12 @@ codeunit 50002 "DOT Subscribers"
         TempSalesLine, NextSalesLine, lrSalesLine : Record "Sales Line";
         SalesShptLine: Record "Sales Shipment Line";
         SalesShptHeader: record "Sales Shipment Header";
+        NoOfShip: Integer;
+        FilterDlvAddr: Text;
+        DlvAddr: text;
+        DictOfGroup: Dictionary of [Integer, Text];
+        SLQuery: query "DOT Sales Line";
+        duplicate: Boolean;
     begin
         ok := false;
         if SalesHeader."Document Type" = "Sales Document Type"::Order then begin
@@ -91,14 +97,32 @@ codeunit 50002 "DOT Subscribers"
                 NextSalesLine := TempSalesLine;
                 // Set TempSalesLine back to first record
                 // TempSalesLine.FindFirst(); //this is not working correctly if 1st and 2nd line same delivery address
-                TempSalesLine.findlast(); //this is not working correctly if 1st and last line same delivery address - current use
+                // TempSalesLine.findlast(); //this is not working correctly if 1st and last line same delivery address - prev use
 
-                // If TempSalesLine and NextSalesLine has different data, then filter SalesLine
-                if TempSalesLine."Delivery Address" <> NextSalesLine."Delivery Address" then begin
-                    // When you filter SalesLine, the standard Post event will post this filtered result
-                    SalesLine.SetRange("Delivery Address", TempSalesLine."Delivery Address");
-                    SalesLine.SetFilter("Qty. to Ship", '<>%1', 0);
-                    SalesLine.FindSet();
+                // if get more than 1 delivery address then
+                SLQuery.SetFilter(Document_No_, TempSalesLine."Document No.");
+                //SLQuery.SetFilter(Delivery_Address, SalesLine."Delivery Address");
+                SLQuery.Open();
+                while SLQuery.Read() do begin
+                    if (DlvAddr <> '') and (DlvAddr = SLQuery.Delivery_Address) then begin
+                        duplicate := true
+                    end else begin
+                        NoOfShip += 1;
+                        DlvAddr := SLQuery.Delivery_Address;
+                    end;
+                end;
+                if NoOfShip > 1 then begin
+                    // loop to compare
+                    repeat
+                        TempSalesLine.Next();
+                        // If TempSalesLine and NextSalesLine has different data, then filter SalesLine
+                        if TempSalesLine."Delivery Address" <> NextSalesLine."Delivery Address" then begin
+                            // When you filter SalesLine, the standard Post event will post this filtered result
+                            SalesLine.SetRange("Delivery Address", TempSalesLine."Delivery Address");
+                            SalesLine.SetFilter("Qty. to Ship", '<>%1', 0);
+                            SalesLine.FindSet();
+                        end
+                    until TempSalesLine.Next = 0;
                 end;
             end else
                 exit;
@@ -184,6 +208,7 @@ codeunit 50002 "DOT Subscribers"
                 SalesShipmentHeader."Ship-to Contact" := MultiAddress.Contact;
                 SalesShipmentHeader."Ship-to Post Code" := MultiAddress."Post Code";
                 SalesShipmentHeader."Ship-to Country/Region Code" := MultiAddress."Country/Region Code";
+                SalesShipmentHeader."Ship-to Address 2" := '';
                 SalesShipmentHeader.Modify();
 
                 SalesShptLine.SetRange("Document No.", SalesShipmentHeader."No.");
