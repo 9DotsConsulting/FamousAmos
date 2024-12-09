@@ -7,7 +7,6 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>b23244e3-9790-4712-be0f-6041ac5f0e69</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -1502,7 +1501,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox37">
+                        <Textbox Name="Textbox77">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1520,7 +1519,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox37</rd:DefaultName>
+                          <rd:DefaultName>Textbox77</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1545,7 +1544,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox38">
+                        <Textbox Name="Textbox78">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1563,7 +1562,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox38</rd:DefaultName>
+                          <rd:DefaultName>Textbox78</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1591,17 +1590,17 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox301">
+                        <Textbox Name="Textbox81">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Comment_Line.Value</Value>
+                                  <Value>=Fields!DescriptionLine.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
-                                    <FontWeight>=IIF(Fields!Quantity.Value = 0, "Bold","Default")</FontWeight>
+                                    <FontWeight>Normal</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1610,7 +1609,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox300</rd:DefaultName>
+                          <rd:DefaultName>Textbox81</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1632,6 +1631,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                           </Style>
                         </Textbox>
                         <ColSpan>5</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -1640,7 +1640,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox53">
+                        <Textbox Name="Textbox86">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1658,7 +1658,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox53</rd:DefaultName>
+                          <rd:DefaultName>Textbox86</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1683,7 +1683,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox54">
+                        <Textbox Name="Textbox89">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1701,52 +1701,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox54</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <LeftBorder>
-                              <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </LeftBorder>
-                            <RightBorder>
-                              <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </RightBorder>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <ColSpan>2</ColSpan>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell />
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox56">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox56</rd:DefaultName>
+                          <rd:DefaultName>Textbox89</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1773,7 +1728,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox58">
+                        <Textbox Name="Textbox91">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1791,7 +1746,52 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox58</rd:DefaultName>
+                          <rd:DefaultName>Textbox91</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox93">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox93</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1823,7 +1823,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox292">
+                        <Textbox Name="Textbox295">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1866,7 +1866,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox294">
+                        <Textbox Name="Textbox50">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1884,7 +1884,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox294</rd:DefaultName>
+                          <rd:DefaultName>Textbox50</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1912,7 +1912,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox300">
+                        <Textbox Name="Textbox59">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1922,7 +1922,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                                   <Value>=Fields!Comment_Line.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
-                                    <FontWeight>=IIF(Fields!Quantity.Value = 0, "Bold","Default")</FontWeight>
+                                    <FontWeight>Normal</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1931,7 +1931,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox300</rd:DefaultName>
+                          <rd:DefaultName>Textbox59</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1961,14 +1961,14 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox314">
+                        <Textbox Name="Textbox317">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Quantity.Value</Value>
+                                  <Value>=Sum(Fields!Quantity.Value)</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                   </Style>
@@ -2004,14 +2004,14 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox316">
+                        <Textbox Name="Textbox71">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Unit_Price_Excl_GST.Value</Value>
+                                  <Value>=Fields!Unit_Price.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <Format>0.00;(0.00)</Format>
@@ -2023,7 +2023,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox316</rd:DefaultName>
+                          <rd:DefaultName>Textbox71</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -2050,14 +2050,14 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox320">
+                        <Textbox Name="Textbox73">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Line_Discount_Amount.Value</Value>
+                                  <Value>=Sum(Fields!Line_Discount_Amount.Value)</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <Format>0.00;(0.00)</Format>
@@ -2069,7 +2069,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox320</rd:DefaultName>
+                          <rd:DefaultName>Textbox73</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -2096,14 +2096,14 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox324">
+                        <Textbox Name="Textbox76">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Line_Amount_Excl_GST.Value</Value>
+                                  <Value>=Sum(Fields!Line_Amount_Excl_GST.Value)</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <Format>0.00;(0.00)</Format>
@@ -2115,7 +2115,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox324</rd:DefaultName>
+                          <rd:DefaultName>Textbox76</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -3210,56 +3210,41 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
-                <TablixMember>
-                  <KeepWithGroup>After</KeepWithGroup>
-                </TablixMember>
-                <TablixMember>
-                  <KeepWithGroup>After</KeepWithGroup>
-                </TablixMember>
-                <TablixMember>
-                  <KeepWithGroup>After</KeepWithGroup>
-                </TablixMember>
-                <TablixMember>
-                  <KeepWithGroup>After</KeepWithGroup>
-                </TablixMember>
-                <TablixMember>
-                  <KeepWithGroup>After</KeepWithGroup>
-                </TablixMember>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
                 <TablixMember>
                   <Group Name="Details2">
                     <GroupExpressions>
                       <GroupExpression>=Fields!DocumentNo.Value</GroupExpression>
-                      <GroupExpression>=Fields!LineNo_Line.Value</GroupExpression>
                     </GroupExpressions>
-                    <Filters>
-                      <Filter>
-                        <FilterExpression>=Fields!PrintLine.Value</FilterExpression>
-                        <Operator>Equal</Operator>
-                        <FilterValues>
-                          <FilterValue DataType="Boolean">=true</FilterValue>
-                        </FilterValues>
-                      </Filter>
-                    </Filters>
                   </Group>
                   <TablixMembers>
+                    <TablixMember />
                     <TablixMember>
-                      <Visibility>
-                        <Hidden>=IIF(Fields!Quantity.Value = 0, false, true)</Hidden>
-                      </Visibility>
-                    </TablixMember>
-                    <TablixMember>
-                      <Visibility>
-                        <Hidden>=IIF(Fields!Quantity.Value = 0, true, false)</Hidden>
-                      </Visibility>
+                      <TablixMembers>
+                        <TablixMember>
+                          <Group Name="Item_Group_No_">
+                            <GroupExpressions>
+                              <GroupExpression>=Fields!Item_Group_No_.Value</GroupExpression>
+                              <GroupExpression>=Fields!Unit_Price.Value</GroupExpression>
+                              <GroupExpression>=Fields!ItemNo_Line.Value</GroupExpression>
+                            </GroupExpressions>
+                          </Group>
+                          <SortExpressions>
+                            <SortExpression>
+                              <Value>=Fields!RunningNo.Value</Value>
+                            </SortExpression>
+                          </SortExpressions>
+                        </TablixMember>
+                      </TablixMembers>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
-                <TablixMember>
-                  <KeepWithGroup>Before</KeepWithGroup>
-                </TablixMember>
-                <TablixMember>
-                  <KeepWithGroup>Before</KeepWithGroup>
-                </TablixMember>
+                <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
@@ -3276,7 +3261,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>8.88059cm</Height>
+        <Height>9.31873cm</Height>
         <Style />
       </Body>
       <Width>18.03447cm</Width>
@@ -6288,12 +6273,6 @@ ME9fukVgj4O+Bz/zBj/4Fzf/ABdFFNVJLRMpVJx0TL+ifDfwv4e1Jb/SdNMF0gKq/wBolfAPXhmI/Sup
         <Field Name="QuantityFormat">
           <DataField>QuantityFormat</DataField>
         </Field>
-        <Field Name="Unit_Price_Excl_GST">
-          <DataField>Unit_Price_Excl_GST</DataField>
-        </Field>
-        <Field Name="Unit_Price_Excl_GSTFormat">
-          <DataField>Unit_Price_Excl_GSTFormat</DataField>
-        </Field>
         <Field Name="Line_Discount_Amount">
           <DataField>Line_Discount_Amount</DataField>
         </Field>
@@ -6306,17 +6285,20 @@ ME9fukVgj4O+Bz/zBj/4Fzf/ABdFFNVJLRMpVJx0TL+ifDfwv4e1Jb/SdNMF0gKq/wBolfAPXhmI/Sup
         <Field Name="Line_Amount_Excl_GSTFormat">
           <DataField>Line_Amount_Excl_GSTFormat</DataField>
         </Field>
-        <Field Name="PrintLine">
-          <DataField>PrintLine</DataField>
-        </Field>
-        <Field Name="Set_Indicator">
-          <DataField>Set_Indicator</DataField>
+        <Field Name="Item_Group_No_">
+          <DataField>Item_Group_No_</DataField>
         </Field>
         <Field Name="Unit_Price">
           <DataField>Unit_Price</DataField>
         </Field>
         <Field Name="Unit_PriceFormat">
           <DataField>Unit_PriceFormat</DataField>
+        </Field>
+        <Field Name="PrintLine">
+          <DataField>PrintLine</DataField>
+        </Field>
+        <Field Name="Set_Indicator">
+          <DataField>Set_Indicator</DataField>
         </Field>
         <Field Name="Qty">
           <DataField>Qty</DataField>
