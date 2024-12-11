@@ -1631,7 +1631,6 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                           </Style>
                         </Textbox>
                         <ColSpan>5</ColSpan>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -2011,7 +2010,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Unit_Price.Value</Value>
+                                  <Value>=Fields!UnitPrice.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <Format>0.00;(0.00)</Format>
@@ -5486,6 +5485,9 @@ ME9fukVgj4O+Bz/zBj/4Fzf/ABdFFNVJLRMpVJx0TL+ifDfwv4e1Jb/SdNMF0gKq/wBolfAPXhmI/Sup
         </Field>
         <Field Name="ShipToAddress8">
           <DataField>ShipToAddress8</DataField>
+        </Field>
+        <Field Name="ShipToPhoneNo">
+          <DataField>ShipToPhoneNo</DataField>
         </Field>
         <Field Name="SellToContactPhoneNoLbl">
           <DataField>SellToContactPhoneNoLbl</DataField>

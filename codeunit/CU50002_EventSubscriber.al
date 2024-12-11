@@ -209,6 +209,7 @@ codeunit 50002 "DOT Subscribers"
                 SalesShipmentHeader."Ship-to Post Code" := MultiAddress."Post Code";
                 SalesShipmentHeader."Ship-to Country/Region Code" := MultiAddress."Country/Region Code";
                 SalesShipmentHeader."Ship-to Address 2" := '';
+                SalesShipmentHeader."Ship-to Phone No." := MultiAddress."Phone No.";
                 SalesShipmentHeader.Modify();
 
                 SalesShptLine.SetRange("Document No.", SalesShipmentHeader."No.");
