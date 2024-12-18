@@ -7,6 +7,7 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>b23244e3-9790-4712-be0f-6041ac5f0e69</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -1918,7 +1919,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Comment_Line.Value</Value>
+                                  <Value>=iif(Fields!UnitPrice.Value &lt;&gt; "", Fields!Comment_Line.Value, "")</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Normal</FontWeight>
