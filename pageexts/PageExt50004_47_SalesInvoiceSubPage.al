@@ -9,6 +9,11 @@ pageextension 50004 SalesInvoiceSubPage extends "Sales Invoice Subform"
                 ApplicationArea = All;
                 Visible = true;
             }
+            field("Line no"; Rec."DOT Line No.")
+            {
+                ApplicationArea = All;
+                Visible = true;
+            }
         }
     }
 

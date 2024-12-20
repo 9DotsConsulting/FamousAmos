@@ -9,6 +9,11 @@ pageextension 50006 PostedSalesInvoiceSubPage extends "Posted Sales Invoice Subf
                 ApplicationArea = All;
                 Visible = true;
             }
+            field("Line No"; Rec."DOT Line No.")
+            {
+                ApplicationArea = all;
+                Visible = true;
+            }
         }
     }
 }

@@ -7,7 +7,6 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>b23244e3-9790-4712-be0f-6041ac5f0e69</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -92,7 +91,9 @@ Cstr(Fields!Purchase_Order_No_.Value) + Chr(177) +
 Cstr(Fields!Order_Date.Value) + Chr(177) +
 Cstr(Fields!Salesperson_Code.Value) + Chr(177) +
 Cstr(Fields!ContactName.Value) + Chr(177) + 
-Cstr(Fields!PhoneNo.Value),1)</Hidden>
+Cstr(Fields!PhoneNo.Value) + Chr(177) +
+Cstr(Fields!Bill_to_Contact.Value) + Chr(177) + 
+Cstr(Fields!Ship_to_Contact.Value),1)</Hidden>
                                             </Visibility>
                                             <Style>
                                               <Border>
@@ -156,7 +157,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                 <TablixMember>
                   <Group Name="Details">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!No_.Value</GroupExpression>
+                      <GroupExpression>=Fields!DocumentNo.Value</GroupExpression>
                       <GroupExpression>=Fields!Customer_No_.Value</GroupExpression>
                     </GroupExpressions>
                     <Filters>
@@ -1862,6 +1863,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1919,7 +1921,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!UnitPrice.Value &lt;&gt; "", Fields!Comment_Line.Value, "")</Value>
+                                  <Value>=Fields!Comment_Line.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontWeight>Normal</FontWeight>
@@ -3221,6 +3223,11 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                       <GroupExpression>=Fields!DocumentNo.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!RunningNo.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
                   <TablixMembers>
                     <TablixMember />
                     <TablixMember>
@@ -3228,9 +3235,8 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                         <TablixMember>
                           <Group Name="Item_Group_No_">
                             <GroupExpressions>
-                              <GroupExpression>=Fields!Item_Group_No_.Value</GroupExpression>
-                              <GroupExpression>=Fields!Unit_Price.Value</GroupExpression>
-                              <GroupExpression>=Fields!ItemNo_Line.Value</GroupExpression>
+                              <GroupExpression>=Fields!DocumentNo.Value</GroupExpression>
+                              <GroupExpression>=Fields!RunningNo.Value</GroupExpression>
                             </GroupExpressions>
                           </Group>
                           <SortExpressions>
@@ -4327,7 +4333,7 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>="ATTN: " + Code.getData(28,1)</Value>
+                      <Value>="ATTN: " + Code.getData(30,1)</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>8pt</FontSize>
@@ -4376,6 +4382,39 @@ Cstr(Fields!PhoneNo.Value),1)</Hidden>
               <Height>0.50704cm</Height>
               <Width>9.35117cm</Width>
               <ZIndex>33</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox37">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="ATTN: " + Code.getData(31,1)</Value>
+                      <Style>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox9</rd:DefaultName>
+              <Top>8.94516cm</Top>
+              <Left>9.3951cm</Left>
+              <Height>0.50704cm</Height>
+              <Width>8.59527cm</Width>
+              <ZIndex>34</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -6261,14 +6300,20 @@ ME9fukVgj4O+Bz/zBj/4Fzf/ABdFFNVJLRMpVJx0TL+ifDfwv4e1Jb/SdNMF0gKq/wBolfAPXhmI/Sup
         <Field Name="PhoneNo">
           <DataField>PhoneNo</DataField>
         </Field>
+        <Field Name="Bill_to_Contact">
+          <DataField>Bill_to_Contact</DataField>
+        </Field>
+        <Field Name="Ship_to_Contact">
+          <DataField>Ship_to_Contact</DataField>
+        </Field>
+        <Field Name="DescriptionLine">
+          <DataField>DescriptionLine</DataField>
+        </Field>
         <Field Name="RunningNo">
           <DataField>RunningNo</DataField>
         </Field>
         <Field Name="Line_No_">
           <DataField>Line_No_</DataField>
-        </Field>
-        <Field Name="DescriptionLine">
-          <DataField>DescriptionLine</DataField>
         </Field>
         <Field Name="Quantity">
           <DataField>Quantity</DataField>

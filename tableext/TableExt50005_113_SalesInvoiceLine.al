@@ -12,5 +12,9 @@ tableextension 50005 SalesInvoiceLine extends "Sales Invoice Line"
         {
             Caption = 'Set Indicator';
         }
+        field(50004; "DOT Line No."; Integer)
+        {
+            Caption = 'Line No.';
+        }
     }
 }

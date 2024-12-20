@@ -109,6 +109,9 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             //column(CompBankAcc; CI."Bank Account No.") { }
             column(ContactName; "Sell-to Contact") { }
             column(PhoneNo; "Sell-to Phone No.") { }
+            column(Bill_to_Contact; "Bill-to Contact") { }
+            column(Ship_to_Contact; "Ship-to Contact") { }
+            column(DescriptionLine; DescriptionLine) { }
 
         }
         add(Line)
@@ -117,14 +120,14 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             //--------------------Invoice Item part-------------------------//
 
             //Field 19: S/N (sequence number)
-            column(RunningNo; RunningNo) { }
+            column(RunningNo; "DOT Line No.") { }
             //Field 20: Product Code (No) - Phase 1 uses No based on G/L acc no
             //column(Line_No_; "No.") { }
             column(Line_No_; LineNo) { }
 
             //Field 21: Description (comment) - Refer to appendix section
 
-            column(DescriptionLine; DescriptionLine) { }
+            // column(DescriptionLine; DescriptionLine) { }
 
             //Field 22: Quantity - Renamed as 'Qty' (Need to sum up - refer to appendix)
             column(Quantity; Quantity) { }
@@ -139,7 +142,7 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
             //column(Line_Discount_Amount; TLineDisc) { }
 
             //Field 25: Amount
-            column(Line_Amount_Excl_GST; Amount) { }
+            column(Line_Amount_Excl_GST; "Line Amount") { }
             //column(Line_Amount_Excl_GST; TLineAmount) { }
             column(Item_Group_No_; "Item Group No.") { }
             column(Unit_Price; "Unit Price") { }
@@ -176,7 +179,6 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
                 // column(Unit_Price; "Unit Price") { }
                 column(Qty; Quantity) { }
                 //column(TotalPerSet;) { }
-
             }
         }
         modify(header)
@@ -195,9 +197,11 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
 
                 SIL.reset;
                 SIL.SetRange("Document No.", Header."No.");
-                if SIL.findfirst then
+                if SIL.findfirst then begin
                     //repeat
-                        ShipmentNo := SIL."Shipment No.";
+                    ShipmentNo := SIL."Shipment No.";
+                    if SIL.Type = "Sales Line Type"::"G/L Account" then DescriptionLine := SIL.Description;
+                end;
                 //until SIL.next = 0;
                 if SIL.findlast then
                     Delivery_Order_No := ShipmentNo + '~' + SIL."Shipment No."
@@ -208,7 +212,6 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
                 SH.SetRange("No.", Header."Order No.");
                 if SH.findfirst then
                     Order_Date := SH."Order Date";
-
             end;
         }
 
@@ -222,21 +225,22 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
                 ok: Boolean;
                 CRLF: Text[2];
             begin
-                currentLine := Line;
-                if "Line No." < CountNo then
-                    RunningNo := 0;
-                if (RunningNo >= 1) then begin
-                    SIL.SetRange("Document No.", "Document No.");
-                    if SIL.FindFirst then ok := true;
-                    if (Type.AsInteger() <> 0) and (currentLine."Item Group No." <> SIL."Item Group No.") OR (currentLine."Unit Price" <> SIL."Unit Price") then begin
-                        RunningNo += 1;
-                        SIL := currentLine;
-                    end;
-                    //CountNo := "Line No." + RunningNo;
-                end else if (Type.AsInteger() <> 0) and (currentLine."Item Group No." <> SIL."Item Group No.") AND (currentLine."Unit Price" <> SIL."Unit Price") then begin
-                    RunningNo += 1;
-                    SIL := currentLine;
-                end;
+                // remove as of not using below code
+                // currentLine := Line;
+                // if "Line No." < CountNo then
+                //     RunningNo := 0;
+                // if (RunningNo >= 1) then begin
+                //     SIL.SetRange("Document No.", "Document No.");
+                //     if SIL.FindFirst then ok := true;
+                //     if (Type.AsInteger() <> 0) and (currentLine."Item Group No." <> SIL."Item Group No.") OR (currentLine."Unit Price" <> SIL."Unit Price") then begin
+                //         RunningNo += 1;
+                //         SIL := currentLine;
+                //     end;
+                //     //CountNo := "Line No." + RunningNo;
+                // end else if (Type.AsInteger() <> 0) and (currentLine."Item Group No." <> SIL."Item Group No.") AND (currentLine."Unit Price" <> SIL."Unit Price") then begin
+                //     RunningNo += 1;
+                //     SIL := currentLine;
+                // end;
                 Clear(CommentLine);
                 CRLF[1] := 13;
                 CRLF[2] := 10;
@@ -250,8 +254,8 @@ reportextension 50100 SalesInvoices extends "Standard Sales - Invoice"
                         CommentLine := SCL.Comment + CRLF + CommentLine;
                     until SCL.Next = 0;
 
-                SIL.FindFirst();
-                if SIL.Type = Type::"G/L Account" then DescriptionLine := SIL.Description;
+                // SIL.FindFirst();
+                // if SIL.Type = Type::"G/L Account" then DescriptionLine := SIL.Description;
 
                 // SIL.Reset();
                 // SIL.SetRange("Document No.", "Document No.");

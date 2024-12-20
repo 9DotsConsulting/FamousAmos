@@ -51,5 +51,9 @@ tableextension 50003 SalesLine extends "Sales Line"
         {
             Caption = 'Set Indicator';
         }
+        field(50004; "DOT Line No."; Integer)
+        {
+            Caption = 'Line No.';
+        }
     }
 }

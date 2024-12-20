@@ -3112,7 +3112,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>="TEL: " + Code.GetData(39,1)</Value>
+                          <Value>=Code.GetData(5,1)</Value>
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
@@ -3123,36 +3123,10 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                       <Style />
                     </Paragraph>
                   </Paragraphs>
-                  <Top>2.02312cm</Top>
+                  <Top>1.22602cm</Top>
                   <Height>11pt</Height>
                   <Width>4.88538cm</Width>
                   <ZIndex>4</ZIndex>
-                  <Style>
-                    <VerticalAlign>Middle</VerticalAlign>
-                  </Style>
-                </Textbox>
-                <Textbox Name="BuyFromAddr41">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=Code.GetData(4,1)</Value>
-                          <Style>
-                            <FontStyle>Normal</FontStyle>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>1.63187cm</Top>
-                  <Height>11pt</Height>
-                  <Width>4.88539cm</Width>
-                  <ZIndex>5</ZIndex>
                   <Style>
                     <VerticalAlign>Middle</VerticalAlign>
                   </Style>
@@ -3175,36 +3149,10 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                       <Style />
                     </Paragraph>
                   </Paragraphs>
-                  <Top>1.2297cm</Top>
+                  <Top>0.83931cm</Top>
                   <Height>11pt</Height>
                   <Width>4.88539cm</Width>
-                  <ZIndex>6</ZIndex>
-                  <Style>
-                    <VerticalAlign>Middle</VerticalAlign>
-                  </Style>
-                </Textbox>
-                <Textbox Name="BuyFromAddr21">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=Code.GetData(2,1)</Value>
-                          <Style>
-                            <FontStyle>Normal</FontStyle>
-                            <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style />
-                    </Paragraph>
-                  </Paragraphs>
-                  <Top>0.84299cm</Top>
-                  <Height>11pt</Height>
-                  <Width>4.88539cm</Width>
-                  <ZIndex>7</ZIndex>
+                  <ZIndex>5</ZIndex>
                   <Style>
                     <VerticalAlign>Middle</VerticalAlign>
                   </Style>
@@ -3228,6 +3176,58 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                     </Paragraph>
                   </Paragraphs>
                   <Top>0.45141cm</Top>
+                  <Height>11pt</Height>
+                  <Width>4.88539cm</Width>
+                  <ZIndex>6</ZIndex>
+                  <Style>
+                    <VerticalAlign>Middle</VerticalAlign>
+                  </Style>
+                </Textbox>
+                <Textbox Name="BuyFromAddr63">
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>="TEL: " + Code.GetData(39,1)</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontFamily>Segoe UI</FontFamily>
+                            <FontSize>8pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style />
+                    </Paragraph>
+                  </Paragraphs>
+                  <Top>2.01944cm</Top>
+                  <Left>0.01135cm</Left>
+                  <Height>11pt</Height>
+                  <Width>4.88539cm</Width>
+                  <ZIndex>7</ZIndex>
+                  <Style>
+                    <VerticalAlign>Middle</VerticalAlign>
+                  </Style>
+                </Textbox>
+                <Textbox Name="BuyFromAddr21">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>=Code.GetData(2,1)</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontFamily>Segoe UI</FontFamily>
+                            <FontSize>8pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style />
+                    </Paragraph>
+                  </Paragraphs>
+                  <Top>1.63138cm</Top>
                   <Height>11pt</Height>
                   <Width>4.88539cm</Width>
                   <ZIndex>8</ZIndex>
@@ -3929,6 +3929,7 @@ Cstr(Fields!OrderNo_SalesShptHeader.Value)
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
+              <Top>0cm</Top>
               <Left>0.04083cm</Left>
               <Height>2.61269cm</Height>
               <Width>18.09866cm</Width>
